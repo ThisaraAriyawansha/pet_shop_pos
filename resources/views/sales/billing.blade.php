@@ -1898,7 +1898,7 @@ doc.setFontSize(9);
     centerText('-------------------------------------------------------------------------------------', currentY);
     const currentYear = new Date().getFullYear();
     currentY += PAGE_CONFIG.spacing.lineHeight;
-    centerText(`Powered by Silicon Radon Networks (Pvt) Ltd.`, currentY);
+    centerText(`Powered by PlexCode.`, currentY);
 
     // Generate and open PDF
     const pdfBlob = doc.output('blob');

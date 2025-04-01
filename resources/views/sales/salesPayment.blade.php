@@ -250,7 +250,7 @@ function generatePaymentReceipt(paymentData) {
     centerText('-------------------------------------------------------------------------------------', currentY);
     const currentYear = new Date().getFullYear();
     currentY += 4;  // Reduced the line gap
-    centerText(`Powered by Silicon Radon Networks (Pvt) Ltd.`, currentY);
+    centerText(`Powered by PlexCode.`, currentY);
 
     // Generate and open PDF
     const pdfBlob = doc.output('blob');
