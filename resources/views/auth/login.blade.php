@@ -185,7 +185,7 @@
                     </span>
                 </form>
                 <span class="flex justify-center w-full mt-6">
-                    <p class="text-sm text-center text-white">Powered by Silicon Radon Networks (Pvt) Ltd.</p>
+                    <p class="text-sm text-center text-white">Powered by Plexcode.</p>
                 </span>
             </div>
         </div>
