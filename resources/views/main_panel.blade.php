@@ -136,28 +136,9 @@
                 </a>
             @endif
 
-            @if (has_permission(78))
-                <a href="{{ asset('sales/dueAmount') }}">
-                    <div
-                        class="w-[200px] max-lg:w-[150px] h-[200px] max-lg:h-[150px] bg-[{{ $settings[7]->value}}] rounded-lg flex flex-col gap-3 justify-center items-center hover:scale-90 transition-all cursor-pointer uppercase lg:text-xl">
-                        <img src="../images/main-panel/btn-icons/billing.svg"
-                            class="w-[105px] h-[105px] max-lg:w-[70px] max-lg:h-[70px]" alt="">
-                        <p>Due Amount</p>
-                    </div>
-                </a>
-            @endif
-            
-            @if (has_permission(91))
 
-                <a href="{{ asset('mobile/mobile') }}">
-                    <div
-                        class="w-[200px] max-lg:w-[150px] h-[200px] max-lg:h-[150px] bg-[{{ $settings[7]->value}}] rounded-lg flex flex-col gap-3 justify-center items-center hover:scale-90 transition-all cursor-pointer uppercase lg:text-xl">
-                        <img src="../images/Mobile/mobile-phone.svg"
-                            class="w-[105px] h-[105px] max-lg:w-[70px] max-lg:h-[70px]" alt="">
-                        <p>Mobile</p>
-                    </div>
-                </a>
-            @endif
+            
+
 
 
             @if (has_permission(22))
@@ -193,16 +174,7 @@
                 </a>
             @endif
 
-            @if (has_permission(25))
-                <a href="{{ asset('expenses/expenses') }}">
-                    <div
-                        class="w-[200px] max-lg:w-[150px] h-[200px] max-lg:h-[150px] bg-[{{ $settings[7]->value}}] rounded-lg flex flex-col gap-3 justify-center items-center hover:scale-90 transition-all cursor-pointer uppercase lg:text-xl">
-                        <img src="../images/main-panel/btn-icons/expenses.svg"
-                            class="w-[105px] h-[105px] max-lg:w-[70px] max-lg:h-[70px]" alt="">
-                        <p>Expenses</p>
-                    </div>
-                </a>
-            @endif
+
 
             @if (has_permission(26))
                 <a href="{{ asset('reports/reports') }}">
@@ -237,19 +209,12 @@
                 </a>
             @endif
 
-                <a href="{{ asset('otheritem/otheritem') }}">
-                    <div
-                        class="w-[200px] max-lg:w-[150px] h-[200px] max-lg:h-[150px] bg-[{{ $settings[7]->value}}] rounded-lg flex flex-col gap-3 justify-center items-center hover:scale-90 transition-all cursor-pointer uppercase lg:text-xl">
-                        <img src="../images/main-panel/btn-icons/items.svg"
-                            class="w-[105px] h-[105px] max-lg:w-[70px] max-lg:h-[70px]" alt="">
-                        <p>Laptops</p>
-                    </div>
-                </a>
+
 
         </div>
         <!--Main Panel (for lg)-->
         <div class="hidden lg:grid place-items-center">
-            <div class="grid grid-cols-6 gap-4 gap-6 px-12 py-3 text-white w-fit h-fit">
+            <div class="grid grid-cols-5 gap-4 gap-6 px-12 py-3 text-white w-fit h-fit">
                 @if (has_permission(17))
                     <a href="{{ asset('dash/dash') }}">
                         <div
@@ -305,31 +270,10 @@
                     </a>
                 @endif
 
-                @if (has_permission(78))
-                    <a href="{{ asset('sales/dueAmount') }}">
-                        <div
-                            class="w-[200px] max-xl:w-[150px] h-[200px] max-xl:h-[150px] bg-[{{ $settings[7]->value}}] rounded-lg flex flex-col gap-3 justify-center items-center hover:scale-90 transition-all cursor-pointer uppercase lg:text-xl">
-                            <img src="../images/main-panel/btn-icons/billing.svg"
-                                class="w-[105px] h-[105px] max-xl:w-[70px] max-xl:h-[70px]" alt="">
-                            <p>Due Amount</p>
-                        </div>
-                    </a>
-                @endif
 
             </div>
-            <div class="grid grid-cols-5 gap-4 gap-6 px-12 py-3 text-white w-fit h-fit">
-            
-            @if (has_permission(91))
-            <a href="{{ asset('mobile/mobile') }}">
-                        <div
-                            class="w-[200px] max-xl:w-[150px] h-[200px] max-xl:h-[150px] bg-[{{ $settings[7]->value}}] rounded-lg flex flex-col gap-3 justify-center items-center hover:scale-90 transition-all cursor-pointer uppercase lg:text-xl">
-                            <img src="../images/Mobile/mobile-phone.svg"
-                                class="w-[105px] h-[105px] max-xl:w-[70px] max-xl:h-[70px]" alt="">
-                            <p>Mobile</p>
-                        </div>
-                    </a>
+            <div class="grid grid-cols-4 gap-4 gap-6 px-12 py-3 text-white w-fit h-fit">
 
-                @endif
             
                 @if (has_permission(22))
                     <a href="{{ asset('users/users') }}">
@@ -365,20 +309,6 @@
                     </a>
                 @endif
 
-                @if (has_permission(25))
-                    <a href="{{ asset('expenses/expenses') }}">
-                        <div
-                            class="w-[200px] max-xl:w-[150px] h-[200px] max-xl:h-[150px] bg-[{{ $settings[7]->value}}] rounded-lg flex flex-col gap-3 justify-center items-center hover:scale-90 transition-all cursor-pointer uppercase lg:text-xl">
-                            <img src="../images/main-panel/btn-icons/expenses.svg"
-                                class="w-[105px] h-[105px] max-xl:w-[70px] max-xl:h-[70px]" alt="">
-                            <p>Expenses</p>
-                        </div>
-                    </a>
-                @endif
-
-            </div>
-            <div class="grid grid-cols-4 gap-4 gap-6 px-12 py-3 text-white w-fit h-fit">
-
                 @if (has_permission(26))
                     <a href="{{ asset('reports/reports') }}">
                         <div
@@ -389,6 +319,12 @@
                         </div>
                     </a>
                 @endif
+
+
+            </div>
+            <div class="grid grid-cols-2 gap-4 gap-6 px-12 py-3 text-white w-fit h-fit">
+
+
 
                 @if (has_permission(27))
                     <a href="{{ asset('settings/settings') }}">
@@ -413,14 +349,7 @@
                 @endif
                 
 
-                    <a href="{{ asset('otheritem/otheritem') }}">
-                        <div
-                            class="w-[200px] max-xl:w-[150px] h-[200px] max-xl:h-[150px] bg-[{{ $settings[7]->value}}] rounded-lg flex flex-col gap-3 justify-center items-center hover:scale-90 transition-all cursor-pointer uppercase lg:text-xl">
-                            <img src="../images/main-panel/btn-icons/items.svg"
-                                class="w-[105px] h-[105px] max-xl:w-[70px] max-xl:h-[70px]" alt="">
-                            <p>Laptops</p>
-                        </div>
-                    </a>
+
                 
 
             </div>
