@@ -1,38 +1,11 @@
--- phpMyAdmin SQL Dump
--- version 5.2.1
--- https://www.phpmyadmin.net/
---
--- Host: 127.0.0.1
--- Generation Time: Jul 03, 2025 at 04:14 PM
--- Server version: 10.4.32-MariaDB
--- PHP Version: 8.2.12
 
-SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-START TRANSACTION;
-SET time_zone = "+00:00";
-
-
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
-
---
--- Database: `pet_shop_pos`
---
-
--- --------------------------------------------------------
-
---
--- Table structure for table `brands`
---
 
 CREATE TABLE `brands` (
   `id` int(11) NOT NULL,
   `name` varchar(255) NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
   `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ;
 
 --
 -- Dumping data for table `brands`
@@ -48,8 +21,8 @@ INSERT INTO `brands` (`id`, `name`, `created_at`, `updated_at`) VALUES
 --
 
 CREATE TABLE `cities` (
-  `id` bigint(20) UNSIGNED NOT NULL,
-  `district_id` bigint(20) UNSIGNED DEFAULT NULL,
+  `id` bigserial  NOT NULL,
+  `district_id` bigserial  DEFAULT NULL,
   `name_en` varchar(45) NOT NULL,
   `name_si` varchar(45) NOT NULL,
   `name_ta` varchar(45) NOT NULL,
@@ -61,7 +34,7 @@ CREATE TABLE `cities` (
   `longitude` decimal(8,2) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+);
 
 --
 -- Dumping data for table `cities`
@@ -77,7 +50,7 @@ INSERT INTO `cities` (`id`, `district_id`, `name_en`, `name_si`, `name_ta`, `sub
 --
 
 CREATE TABLE `customers` (
-  `id` bigint(20) UNSIGNED NOT NULL,
+  `id` bigserial  NOT NULL,
   `customer_name` varchar(255) NOT NULL,
   `contact_number` varchar(45) NOT NULL,
   `cities_id` bigint(20) UNSIGNED DEFAULT NULL,
@@ -91,7 +64,7 @@ CREATE TABLE `customers` (
   `user_id` bigint(10) UNSIGNED DEFAULT NULL,
   `city_name` varchar(255) DEFAULT NULL,
   `customer_id` varchar(100) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ;
 
 --
 -- Dumping data for table `customers`
@@ -126,7 +99,7 @@ CREATE TABLE `districts` (
   `name_ta` varchar(45) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ;
 
 --
 -- Dumping data for table `districts`
@@ -151,7 +124,7 @@ CREATE TABLE `expenses` (
   `user_id` bigint(20) UNSIGNED DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+);
 
 --
 -- Dumping data for table `expenses`
@@ -172,7 +145,7 @@ CREATE TABLE `expense_categories` (
   `user_id` bigint(20) UNSIGNED DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+);
 
 --
 -- Dumping data for table `expense_categories`
@@ -195,7 +168,7 @@ CREATE TABLE `failed_jobs` (
   `payload` longtext NOT NULL,
   `exception` longtext NOT NULL,
   `failed_at` timestamp NOT NULL DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+);
 
 -- --------------------------------------------------------
 
@@ -211,7 +184,7 @@ CREATE TABLE `hold_orders` (
   `hold_status` enum('ACTIVE','DEACTIVE') NOT NULL DEFAULT 'ACTIVE',
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+);
 
 -- --------------------------------------------------------
 
@@ -229,7 +202,7 @@ CREATE TABLE `hold_order_items` (
   `discount` decimal(10,2) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+);
 
 -- --------------------------------------------------------
 
@@ -243,7 +216,7 @@ CREATE TABLE `inhouseitemstock` (
   `qty` int(11) NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
   `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+);
 
 -- --------------------------------------------------------
 
@@ -267,7 +240,7 @@ CREATE TABLE `items` (
   `status_id` bigint(20) UNSIGNED DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+);
 
 --
 -- Dumping data for table `items`
@@ -292,7 +265,7 @@ CREATE TABLE `item_categories` (
   `description` varchar(500) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+);
 
 --
 -- Dumping data for table `item_categories`
@@ -314,7 +287,7 @@ CREATE TABLE `migrations` (
   `id` int(10) UNSIGNED NOT NULL,
   `migration` varchar(255) NOT NULL,
   `batch` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+);
 
 --
 -- Dumping data for table `migrations`
@@ -359,7 +332,7 @@ CREATE TABLE `otheritem_brands` (
   `name` varchar(255) NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
   `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ;
 
 --
 -- Dumping data for table `otheritem_brands`
@@ -380,7 +353,7 @@ CREATE TABLE `otheritem_categories` (
   `name` varchar(255) NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
   `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+);
 
 --
 -- Dumping data for table `otheritem_categories`
@@ -401,7 +374,7 @@ CREATE TABLE `otheritem_types` (
   `name` varchar(255) NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
   `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ;
 
 --
 -- Dumping data for table `otheritem_types`
@@ -430,7 +403,7 @@ CREATE TABLE `other_item` (
   `wholesale_price` decimal(10,2) NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
   `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ;
 
 --
 -- Dumping data for table `other_item`
@@ -453,7 +426,7 @@ CREATE TABLE `other_order` (
   `serial_number_id` varchar(100) NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
   `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+);
 
 -- --------------------------------------------------------
 
@@ -470,7 +443,7 @@ CREATE TABLE `other_payment` (
   `warranty` varchar(50) DEFAULT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
   `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+);
 
 -- --------------------------------------------------------
 
@@ -482,7 +455,7 @@ CREATE TABLE `password_reset_tokens` (
   `email` varchar(255) NOT NULL,
   `token` varchar(255) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+);
 
 -- --------------------------------------------------------
 
@@ -508,7 +481,7 @@ CREATE TABLE `payments` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   `pay_due_amount` decimal(14,2) DEFAULT 0.00
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+);
 
 --
 -- Dumping data for table `payments`
@@ -531,7 +504,7 @@ CREATE TABLE `permissions` (
   `permissions_name` varchar(45) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+);
 
 --
 -- Dumping data for table `permissions`
@@ -633,7 +606,7 @@ CREATE TABLE `personal_access_tokens` (
   `expires_at` timestamp NULL DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+);
 
 -- --------------------------------------------------------
 
@@ -648,7 +621,7 @@ CREATE TABLE `provinces` (
   `name_ta` varchar(45) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+);
 
 --
 -- Dumping data for table `provinces`
@@ -668,7 +641,7 @@ CREATE TABLE `purchase_status` (
   `name` varchar(255) NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
   `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+);
 
 --
 -- Dumping data for table `purchase_status`
@@ -689,7 +662,7 @@ CREATE TABLE `roles` (
   `role_name` varchar(255) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+);
 
 --
 -- Dumping data for table `roles`
@@ -712,7 +685,7 @@ CREATE TABLE `roles_has_permissions` (
   `permissions_id` bigint(20) UNSIGNED DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+);
 
 --
 -- Dumping data for table `roles_has_permissions`
@@ -842,7 +815,7 @@ CREATE TABLE `sales` (
   `warranty_card_no` varchar(255) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+);
 
 --
 -- Dumping data for table `sales`
@@ -869,7 +842,7 @@ CREATE TABLE `sales_due_payments` (
   `sale_id` varchar(20) NOT NULL,
   `cheque_number` varchar(20) DEFAULT NULL,
   `cheque_date` date DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ;
 
 -- --------------------------------------------------------
 
@@ -888,7 +861,7 @@ CREATE TABLE `sales_items` (
   `updated_at` timestamp NULL DEFAULT NULL,
   `return_quantity` int(11) DEFAULT NULL,
   `status` varchar(50) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ;
 
 --
 -- Dumping data for table `sales_items`
@@ -916,7 +889,7 @@ CREATE TABLE `sales_return_items` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   `status` varchar(50) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+);
 
 --
 -- Dumping data for table `sales_return_items`
@@ -938,7 +911,7 @@ CREATE TABLE `sessions` (
   `user_agent` text DEFAULT NULL,
   `payload` longtext NOT NULL,
   `last_activity` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+);
 
 --
 -- Dumping data for table `sessions`
@@ -959,7 +932,7 @@ CREATE TABLE `settings` (
   `value` varchar(45) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+);
 
 --
 -- Dumping data for table `settings`
@@ -998,7 +971,7 @@ CREATE TABLE `site_settings` (
   `company_logo` varchar(255) DEFAULT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
   `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+);
 
 --
 -- Dumping data for table `site_settings`
@@ -1018,7 +991,7 @@ CREATE TABLE `statuses` (
   `status_name` varchar(255) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+);
 
 --
 -- Dumping data for table `statuses`
@@ -1043,7 +1016,7 @@ CREATE TABLE `stock_updates` (
   `note` longtext NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+);
 
 -- --------------------------------------------------------
 
@@ -1056,7 +1029,7 @@ CREATE TABLE `storages` (
   `name` varchar(255) NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
   `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+);
 
 --
 -- Dumping data for table `storages`
@@ -1083,7 +1056,7 @@ CREATE TABLE `suppliers` (
   `updated_at` timestamp NULL DEFAULT NULL,
   `city_id` bigint(20) DEFAULT NULL,
   `city_name` varchar(255) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+);
 
 --
 -- Dumping data for table `suppliers`
@@ -1116,7 +1089,7 @@ CREATE TABLE `users` (
   `profile_photo_path` varchar(2048) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+);
 
 --
 -- Dumping data for table `users`

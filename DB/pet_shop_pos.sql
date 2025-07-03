@@ -28,7 +28,7 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `agents` (
-  `id` int(11) NOT NULL,
+  id serial PRIMARY KEY,
   `name` varchar(255) NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
   `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
@@ -48,7 +48,7 @@ INSERT INTO `agents` (`id`, `name`, `created_at`, `updated_at`) VALUES
 --
 
 CREATE TABLE `brands` (
-  `id` int(11) NOT NULL,
+  id serial PRIMARY KEY,
   `name` varchar(255) NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
   `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
