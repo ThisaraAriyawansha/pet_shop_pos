@@ -17,8 +17,7 @@
         }
         
         body {
-            background: radial-gradient(circle at 10% 20%, rgba(20, 20, 30, 0.98) 0%, rgba(10, 10, 20, 1) 90%);
-            color: #e0e0e0;
+
             font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
         }
         
@@ -139,7 +138,7 @@
     </header>
 
     <!-- Main Content -->
-    <main class="container relative z-10 px-4 py-8 mx-auto" style="background: {{ $settings[7]->value }}; color: #e0e0e0;">
+    <main class="container relative z-10 px-4 py-8 mx-auto" >
         <!-- Notifications -->
         <div class="fixed z-50 space-y-3 top-20 right-4 w-80">
             {{-- Validation Errors Summary --}}
@@ -184,132 +183,132 @@
         <div class="grid grid-cols-1 gap-6 mt-8 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 " >
             @if (has_permission(17))
                 <a href="{{ asset('dash/dash') }}" class="group">
-                    <div class="flex flex-col items-center h-full p-6 glass-card rounded-xl">
+                    <div class="flex flex-col items-center h-full p-6 glass-card rounded-xl" style="background: {{ $settings[7]->value }}; color: #e0e0e0;">
                         <div class="flex items-center justify-center w-20 h-20 mb-4 rounded-full bg-gradient-to-br from-blue-500 to-blue-700 icon-hover">
                             <img src="../images/main-panel/btn-icons/dash.svg" class="w-12 h-12" alt="Dashboard">
                         </div>
                         <h3 class="text-lg font-semibold text-center transition-colors group-hover:text-blue-300">Dashboard</h3>
-                        <p class="mt-1 text-xs text-center text-gray-400">System Overview</p>
+                        <p class="mt-1 text-xs text-center text-gray-300">System Overview</p>
                     </div>
                 </a>
             @endif
 
             @if (has_permission(18))
                 <a href="{{ asset('sales/billing') }}" target="_blank" class="group">
-                    <div class="flex flex-col items-center h-full p-6 glass-card rounded-xl">
+                    <div class="flex flex-col items-center h-full p-6 glass-card rounded-xl" style="background: {{ $settings[7]->value }}; color: #e0e0e0;">
                         <div class="flex items-center justify-center w-20 h-20 mb-4 rounded-full bg-gradient-to-br from-green-500 to-green-700 icon-hover">
                             <img src="../images/main-panel/btn-icons/billing.svg" class="w-12 h-12" alt="Billing">
                         </div>
                         <h3 class="text-lg font-semibold text-center transition-colors group-hover:text-green-300">Billing</h3>
-                        <p class="mt-1 text-xs text-center text-gray-400">Create Invoices</p>
+                        <p class="mt-1 text-xs text-center text-gray-300">Create Invoices</p>
                     </div>
                 </a>
             @endif
 
             @if (has_permission(19))
                 <a href="{{ asset('item/item') }}" class="group">
-                    <div class="flex flex-col items-center h-full p-6 glass-card rounded-xl">
+                    <div class="flex flex-col items-center h-full p-6 glass-card rounded-xl" style="background: {{ $settings[7]->value }}; color: #e0e0e0;">
                         <div class="flex items-center justify-center w-20 h-20 mb-4 rounded-full bg-gradient-to-br from-purple-500 to-purple-700 icon-hover">
                             <img src="../images/main-panel/btn-icons/items.svg" class="w-12 h-12" alt="Items">
                         </div>
                         <h3 class="text-lg font-semibold text-center transition-colors group-hover:text-purple-300">Items</h3>
-                        <p class="mt-1 text-xs text-center text-gray-400">Product Management</p>
+                        <p class="mt-1 text-xs text-center text-gray-300">Product Management</p>
                     </div>
                 </a>
             @endif
 
             @if (has_permission(20))
                 <a href="{{ asset('stock/stock') }}" class="group">
-                    <div class="flex flex-col items-center h-full p-6 glass-card rounded-xl">
+                    <div class="flex flex-col items-center h-full p-6 glass-card rounded-xl" style="background: {{ $settings[7]->value }}; color: #e0e0e0;">
                         <div class="flex items-center justify-center w-20 h-20 mb-4 rounded-full bg-gradient-to-br from-yellow-500 to-yellow-700 icon-hover">
                             <img src="../images/main-panel/btn-icons/stock.svg" class="w-12 h-12" alt="Stock">
                         </div>
                         <h3 class="text-lg font-semibold text-center transition-colors group-hover:text-yellow-300">Stock</h3>
-                        <p class="mt-1 text-xs text-center text-gray-400">Inventory Control</p>
+                        <p class="mt-1 text-xs text-center text-gray-300">Inventory Control</p>
                     </div>
                 </a>
             @endif
 
             @if (has_permission(21))
                 <a href="{{ asset('sales/sales') }}" class="group">
-                    <div class="flex flex-col items-center h-full p-6 glass-card rounded-xl">
+                    <div class="flex flex-col items-center h-full p-6 glass-card rounded-xl" style="background: {{ $settings[7]->value }}; color: #e0e0e0;">
                         <div class="flex items-center justify-center w-20 h-20 mb-4 rounded-full bg-gradient-to-br from-red-500 to-red-700 icon-hover">
                             <img src="../images/main-panel/btn-icons/sales.svg" class="w-12 h-12" alt="Sales">
                         </div>
                         <h3 class="text-lg font-semibold text-center transition-colors group-hover:text-red-300">Sales</h3>
-                        <p class="mt-1 text-xs text-center text-gray-400">Transaction History</p>
+                        <p class="mt-1 text-xs text-center text-gray-300">Transaction History</p>
                     </div>
                 </a>
             @endif
 
             @if (has_permission(22))
                 <a href="{{ asset('users/users') }}" class="group">
-                    <div class="flex flex-col items-center h-full p-6 glass-card rounded-xl">
+                    <div class="flex flex-col items-center h-full p-6 glass-card rounded-xl" style="background: {{ $settings[7]->value }}; color: #e0e0e0;">
                         <div class="flex items-center justify-center w-20 h-20 mb-4 rounded-full bg-gradient-to-br from-cyan-500 to-cyan-700 icon-hover">
                             <img src="../images/main-panel/btn-icons/users.svg" class="w-12 h-12" alt="Users">
                         </div>
                         <h3 class="text-lg font-semibold text-center transition-colors group-hover:text-cyan-300">Users</h3>
-                        <p class="mt-1 text-xs text-center text-gray-400">Access Management</p>
+                        <p class="mt-1 text-xs text-center text-gray-300">Access Management</p>
                     </div>
                 </a>
             @endif
 
             @if (has_permission(23))
                 <a href="{{ asset('customers/customers') }}" class="group">
-                    <div class="flex flex-col items-center h-full p-6 glass-card rounded-xl">
+                    <div class="flex flex-col items-center h-full p-6 glass-card rounded-xl" style="background: {{ $settings[7]->value }}; color: #e0e0e0;">
                         <div class="flex items-center justify-center w-20 h-20 mb-4 rounded-full bg-gradient-to-br from-pink-500 to-pink-700 icon-hover">
                             <img src="../images/main-panel/btn-icons/customer.svg" class="w-12 h-12" alt="Customers">
                         </div>
                         <h3 class="text-lg font-semibold text-center transition-colors group-hover:text-pink-300">Customers</h3>
-                        <p class="mt-1 text-xs text-center text-gray-400">Client Database</p>
+                        <p class="mt-1 text-xs text-center text-gray-300">Client Database</p>
                     </div>
                 </a>
             @endif
 
             @if (has_permission(24))
                 <a href="{{ asset('suppliers/suppliers') }}" class="group">
-                    <div class="flex flex-col items-center h-full p-6 glass-card rounded-xl">
+                    <div class="flex flex-col items-center h-full p-6 glass-card rounded-xl" style="background: {{ $settings[7]->value }}; color: #e0e0e0;">
                         <div class="flex items-center justify-center w-20 h-20 mb-4 rounded-full bg-gradient-to-br from-orange-500 to-orange-700 icon-hover">
                             <img src="../images/main-panel/btn-icons/suppliers.svg" class="w-12 h-12" alt="Suppliers">
                         </div>
                         <h3 class="text-lg font-semibold text-center transition-colors group-hover:text-orange-300">Suppliers</h3>
-                        <p class="mt-1 text-xs text-center text-gray-400">Vendor Network</p>
+                        <p class="mt-1 text-xs text-center text-gray-300">Vendor Network</p>
                     </div>
                 </a>
             @endif
 
             @if (has_permission(26))
                 <a href="{{ asset('reports/reports') }}" class="group">
-                    <div class="flex flex-col items-center h-full p-6 glass-card rounded-xl">
+                    <div class="flex flex-col items-center h-full p-6 glass-card rounded-xl" style="background: {{ $settings[7]->value }}; color: #e0e0e0;">
                         <div class="flex items-center justify-center w-20 h-20 mb-4 rounded-full bg-gradient-to-br from-indigo-500 to-indigo-700 icon-hover">
                             <img src="../images/main-panel/btn-icons/reports.svg" class="w-12 h-12" alt="Reports">
                         </div>
                         <h3 class="text-lg font-semibold text-center transition-colors group-hover:text-indigo-300">Reports</h3>
-                        <p class="mt-1 text-xs text-center text-gray-400">Business Analytics</p>
+                        <p class="mt-1 text-xs text-center text-gray-300">Business Analytics</p>
                     </div>
                 </a>
             @endif
 
             @if (has_permission(27))
                 <a href="{{ asset('settings/settings') }}" class="group">
-                    <div class="flex flex-col items-center h-full p-6 glass-card rounded-xl">
+                    <div class="flex flex-col items-center h-full p-6 glass-card rounded-xl" style="background: {{ $settings[7]->value }}; color: #e0e0e0;">
                         <div class="flex items-center justify-center w-20 h-20 mb-4 rounded-full bg-gradient-to-br from-gray-500 to-gray-700 icon-hover">
                             <img src="../images/main-panel/btn-icons/settings.svg" class="w-12 h-12" alt="Settings">
                         </div>
                         <h3 class="text-lg font-semibold text-center transition-colors group-hover:text-gray-300">Settings</h3>
-                        <p class="mt-1 text-xs text-center text-gray-400">System Configuration</p>
+                        <p class="mt-1 text-xs text-center text-gray-300">System Configuration</p>
                     </div>
                 </a>
             @endif
             
             @if (has_permission(83))
                 <a href="{{ asset('reports/stockReports') }}" class="group">
-                    <div class="flex flex-col items-center h-full p-6 glass-card rounded-xl">
+                    <div class="flex flex-col items-center h-full p-6 glass-card rounded-xl" style="background: {{ $settings[7]->value }}; color: #e0e0e0;">
                         <div class="flex items-center justify-center w-20 h-20 mb-4 rounded-full bg-gradient-to-br from-teal-500 to-teal-700 icon-hover">
                             <img src="../images/reports/ItemStockReport.png" class="w-12 h-12" alt="Stock Report">
                         </div>
                         <h3 class="text-lg font-semibold text-center transition-colors group-hover:text-teal-300">Stock Report</h3>
-                        <p class="mt-1 text-xs text-center text-gray-400">Inventory Analysis</p>
+                        <p class="mt-1 text-xs text-center text-gray-300">Inventory Analysis</p>
                     </div>
                 </a>
             @endif

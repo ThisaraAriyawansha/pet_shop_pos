@@ -57,7 +57,7 @@
                 />
                 <button 
                     type="submit" 
-                    class="py-2 md:py-3 px-4 md:px-6 bg-[#47891E] text-white rounded-lg text-sm md:text-base">
+                    class="py-2 md:py-3 px-4 md:px-6 bg-[{{ $settings[7]->value}}] text-white rounded-lg text-sm md:text-base">
                     Search
                 </button>
             </form>
@@ -99,7 +99,7 @@
     </div>
 
 <table id="itemsTable" class="w-full text-sm text-left text-gray-500 rtl:text-right">
-    <thead class="text-xs text-white uppercase bg-[#47891E]">
+    <thead class="text-xs text-white uppercase bg-[{{ $settings[7]->value}}]">
         <tr>
             <th scope="col" class="px-4 py-2 rounded-tl-lg">#</th>
             <th scope="col" class="px-4 py-2">Item image</th>
