@@ -189,7 +189,7 @@
         <!-- Sales Chart -->
         <div class="p-6 bg-white shadow-sm rounded-xl lg:col-span-2">
             <div class="flex items-center justify-between">
-                <h3 class="text-lg font-medium text-gray-800">Monthly Sales</h3>
+                <h3 class="text-lg font-medium text-gray-800">Item Details</h3>
                 <div class="flex space-x-2">
                     <button id="chartBtn" class="px-4 py-2 text-sm font-medium text-white bg-gray-800 rounded-lg hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-500">
                         Chart
