@@ -2,20 +2,24 @@
 
 <div class="min-h-screen bg-gray-50">
     <!-- Dashboard Header -->
-    <div class="px-8 py-6 bg-white shadow-sm">
-        <div class="flex items-center justify-between">
+
+
+    <div class="px-4 py-4 bg-white shadow-sm sm:px-6 sm:py-6">
+        <div class="flex flex-col space-y-4 sm:flex-row sm:items-center sm:justify-between sm:space-y-0">
+            <!-- Title and subtitle -->
             <div>
-                <h1 class="text-3xl font-light text-gray-800">Items Management</h1>
-                <p class="text-gray-500">Manage your inventory and product categories</p>
+                <h1 class="text-2xl font-light text-gray-800 sm:text-3xl">Items Management</h1>
+                <p class="text-sm text-gray-500 sm:text-base">Manage your inventory and product categories</p>
             </div>
-            <div class="flex items-center space-x-4">
-                <div class="text-right">
-                    <p class="text-sm text-gray-500">Current Date</p>
-                    <p class="font-medium">{{ now()->format('F j, Y') }}</p>
-                </div>
+
+            <!-- Date display -->
+            <div class="text-left sm:text-right">
+                <p class="text-xs text-gray-500 sm:text-sm">Current Date</p>
+                <p class="text-sm font-medium sm:text-base">{{ now()->format('F j, Y') }}</p>
             </div>
         </div>
     </div>
+
 
     <!-- Breadcrumbs -->
     <div class="px-8 py-4">
