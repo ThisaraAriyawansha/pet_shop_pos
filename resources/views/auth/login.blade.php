@@ -28,34 +28,64 @@
             border-color: {{ $settings[4]->value }};
             box-shadow: 0 0 0 2px {{ $settings[4]->value }}20;
         }
+        @media (max-width: 640px) {
+            .mobile-stack {
+                flex-direction: column;
+            }
+            .mobile-padding {
+                padding: 1.5rem;
+            }
+            .mobile-text-center {
+                text-align: center;
+            }
+            .mobile-mt-4 {
+                margin-top: 1rem;
+            }
+        }
     </style>
 </head>
 
 <body class="flex items-center justify-center min-h-screen p-4 gradient-bg">
-    <div class="flex flex-col w-full max-w-4xl overflow-hidden bg-white shadow-xl rounded-2xl lg:flex-row">
-        <!-- Left Side - Branding -->
-        <div class="lg:w-1/2 bg-gradient-to-br from-[{{ $settings[2]->value }}] to-[{{ $settings[4]->value }}] p-8 flex flex-col justify-center items-center text-white">
+    <div class="flex flex-col w-full max-w-4xl overflow-hidden bg-white shadow-xl rounded-2xl mobile-stack lg:flex-row">
+        <!-- Left Side - Branding (Hidden on mobile) -->
+        <div class="lg:w-1/2 bg-gradient-to-br from-[{{ $settings[2]->value }}] to-[{{ $settings[4]->value }}] p-8 flex flex-col justify-center items-center text-white hidden sm:flex">
             <div class="w-full max-w-xs mb-8">
                 <img src="{{ asset($settings[1]->value) }}" alt="Company Logo" class="w-full h-auto">
             </div>
-            <h2 class="mb-2 text-2xl font-bold">Welcome Back!</h2>
+            <h2 class="mb-2 text-2xl font-bold mobile-text-center">Welcome Back!</h2>
             <p class="text-center opacity-90">Sign in to access your account and continue your journey with us.</p>
         </div>
         
+        <!-- Mobile Header (Shown only on mobile) -->
+        <div class="sm:hidden p-6 bg-gradient-to-r from-[{{ $settings[2]->value }}] to-[{{ $settings[4]->value }}] text-white">
+            <div class="w-16 h-16 mx-auto mb-4">
+                <img src="{{ asset($settings[1]->value) }}" alt="Company Logo" class="object-contain w-full h-full">
+            </div>
+            <h2 class="text-xl font-bold text-center">Welcome Back!</h2>
+        </div>
+        
         <!-- Right Side - Login Form -->
-        <div class="p-8 lg:w-1/2 sm:p-12">
-            <h1 class="mb-2 text-3xl font-bold text-gray-800">Sign In</h1>
-            <p class="mb-8 text-gray-600">Enter your credentials to access your account</p>
+        <div class="p-6 sm:p-8 lg:w-1/2 mobile-padding">
+            <h1 class="mb-2 text-2xl font-bold text-gray-800 sm:text-3xl mobile-text-center sm:text-left">Sign In</h1>
+            <p class="mb-6 text-gray-600 sm:mb-8 mobile-text-center sm:text-left">Enter your credentials to access your account</p>
             
-            <form method="POST" action="{{ route('login') }}" class="space-y-6">
+            <form method="POST" action="{{ route('login') }}" class="space-y-4 sm:space-y-6">
                 @csrf
                 
                 <!-- Email Field -->
                 <div>
                     <label for="email" class="block mb-1 text-sm font-medium text-gray-700">Email Address</label>
-                    <input type="email" name="email" id="email" placeholder="your@email.com" 
-                           class="w-full px-4 py-3 border border-gray-300 rounded-lg input-field focus:outline-none focus:ring-1" 
-                           required autocomplete="email">
+                    <div class="relative">
+                        <input type="email" name="email" id="email" placeholder="your@email.com" 
+                               class="w-full px-4 py-2 text-sm border border-gray-300 rounded-lg sm:py-3 sm:text-base input-field focus:outline-none focus:ring-1" 
+                               required autocomplete="email">
+                        <div class="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
+                            <svg class="w-5 h-5 text-gray-400" fill="currentColor" viewBox="0 0 20 20">
+                                <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"></path>
+                                <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"></path>
+                            </svg>
+                        </div>
+                    </div>
                 </div>
                 
                 <!-- Password Field -->
@@ -65,7 +95,7 @@
                     </div>
                     <div class="relative">
                         <input type="password" name="password" id="password" placeholder="••••••••" 
-                               class="w-full px-4 py-3 pr-10 border border-gray-300 rounded-lg input-field focus:outline-none focus:ring-1" 
+                               class="w-full px-4 py-2 pr-10 text-sm border border-gray-300 rounded-lg sm:py-3 sm:text-base input-field focus:outline-none focus:ring-1" 
                                required autocomplete="current-password">
                         <button type="button" id="togglePassword" class="absolute text-gray-400 transform -translate-y-1/2 right-3 top-1/2 hover:text-gray-600">
                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 16 16">
@@ -77,19 +107,22 @@
                 </div>
                 
                 <!-- Remember Me -->
-
+                    <div class="w-full mt-4 text-center text-gray-600 max-sm:text-sm">
+                        <p>Welcome back! Please enter your credentials to access the system.</p>
+                    </div>
                 
                 <!-- Submit Button -->
                 <button type="submit" 
-                        class="w-full px-4 py-3 text-lg font-medium rounded-lg shadow-sm btn-primary">
+                        class="w-full px-4 py-2 text-base font-medium rounded-lg shadow-sm sm:py-3 sm:text-lg btn-primary mobile-mt-4">
                     Sign In
                 </button>
                 
+                <!-- Sign Up Link -->
 
             </form>
             
             <!-- Footer -->
-            <div class="mt-12 text-xs text-center text-gray-500">
+            <div class="mt-8 text-xs text-center text-gray-500">
                 <p>© {{ date('Y') }} {{ $settings[6]->value }}. All rights reserved.</p>
                 <p class="mt-1">Powered by Plexcode</p>
             </div>
