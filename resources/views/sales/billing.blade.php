@@ -82,7 +82,7 @@
 .tooltip {
     visibility: hidden;
     width: 120px;
-    color: black;
+    color: white;
     text-align: center;
     border-radius: 6px;
     padding: 5px;
@@ -93,8 +93,8 @@
     margin-left: -60px; /* Center the tooltip */
     opacity: 0;
     transition: opacity 0.3s;
-    background-color: #f0f9fd;
-    border: 1px solid #029ED9;
+    background-color: {{ $settings[7]->value}};
+    border: 1px solid {{ $settings[7]->value}};
 }
 
 /* Tooltip arrow */
@@ -106,7 +106,7 @@
     margin-left: -5px;
     border-width: 5px;
     border-style: solid;
-    border-color: #555 transparent transparent transparent;
+    border-color: {{ $settings[7]->value}} transparent transparent transparent;
 }
 
 /* Show the tooltip on hover */
@@ -210,147 +210,155 @@
         <!--main content-->
         <div class="flex h-full gap-2 px-3 py-3 pb-5 overflow-y-auto max-sm:px-6 max-xl:flex-col">
             <!--blue div + textfields + table-->
-            <div class="bg-white flex flex-col w-2/3 rounded-lg border-2 border-[#00000096] max-xl:w-full">
-                <div class="flex flex-col">
-                    <!--blue div-->
-                    <span
-                        class="bg-[{{ $settings[7]->value}}] h-20 max-sm:h-fit rounded-t-md flex max-lg:flex-col max-lg:py-1 justify-between px-4 items-center">
-                        <span class="flex gap-3 text-white max-sm:text-sm max-sm:w-full">
-                            <p>Billing system</p>
-                        </span>
-                        <span class="flex justify-end gap-3 max-sm:p-2 max-sm:text-sm max-sm:flex-col max-sm:w-full">
-                            <button data-modal-target="default-modal" data-modal-toggle="default-modal" id="view-hold-list"
-                                    class="relative px-6 py-1 text-black bg-white border-2 rounded-lg">
-                                View Hold List
-                                <span id="hold-list-count"
-                                    class="absolute right-0 flex items-center justify-center w-6 h-6 text-sm text-white bg-red-500 border-2 rounded-full top-1">
-                                    0
-                                </span>
-                            </button>
+            <div class="flex flex-col w-2/3 bg-white border border-gray-200 shadow-lg rounded-xl max-xl:w-full">
+                <!-- Header Section -->
+                <div class="bg-gradient-to-r from-[{{ $settings[7]->value }}] to-[{{ $settings[4]->value }}] h-20 rounded-t-xl flex items-center justify-between px-6 max-sm:flex-col max-sm:h-fit max-sm:py-3 max-sm:gap-2">
+                    <div class="text-lg font-medium text-white max-sm:text-base max-sm:w-full max-sm:text-center">
+                        Billing System
+                    </div>
+                    
+                    <div class="flex gap-3 max-sm:justify-center max-sm:w-full max-sm:flex-wrap">
+                        <button id="view-hold-list" data-modal-target="default-modal" data-modal-toggle="default-modal" 
+                                class="relative px-4 py-1.5 text-sm bg-white text-gray-800 rounded-lg shadow-sm hover:bg-gray-50 transition-all flex items-center gap-1">
+                            View Hold List
+                            <span id="hold-list-count" class="flex items-center justify-center w-5 h-5 text-xs text-white bg-red-500 rounded-full">
+                                0
+                            </span>
+                        </button>
 
-                            <button id="retailButton" class="px-6 py-1 text-black bg-white border-2 rounded-lg">
+                        <div class="flex gap-2">
+                            <button id="retailButton" class="px-4 py-1.5 text-sm bg-white text-gray-800 rounded-lg shadow-sm hover:bg-gray-50 transition-all">
                                 Retail
                             </button>
-                            <button id="wholesaleButton" class="px-6 py-1 text-black bg-white border-2 rounded-lg">
+                            <button id="wholesaleButton" class="px-4 py-1.5 text-sm bg-white text-gray-800 rounded-lg shadow-sm hover:bg-gray-50 transition-all">
                                 Wholesale
                             </button>
-                        </span>
-                    </span>
-                    <!--textfields-->
-                    <div class="flex gap-3 p-2 h-fit max-sm:flex-col max-sm:items-center">
-                        <!-- Custom Combobox -->
-                        <div class="custom-select sm:w-1/3 " >
-                            <select id="customer" name="customer"
-                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 hidden">
-                                @foreach ($customers as $customer)
-                                    <option value="{{ $customer->id }}">{{ $customer->customer_name }}</option>
-                                @endforeach
-                            </select>
-                        </div>
-
-                        <!--add customer btn (blue)-->
-                        <button type="button" data-modal-target="customer-modal" data-modal-toggle="customer-modal"
-                            class="text-white w-fit bg-[{{ $settings[7]->value}}] hover:bg-[{{ $settings[7]->value}}] focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                                class="bi bi-person-circle" viewBox="0 0 16 16">
-                                <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0" />
-                                <path fill-rule="evenodd"
-                                    d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8m8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1" />
-                            </svg>
-                        </button>
-                        <!--barcode-->
-                        <div>
-                            <div class="max-sm:w-full">
-                                <input type="text" id="itemCodeInput"
-                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-                                    placeholder="Enter a valid item code"  />
-                            </div>
-                            <p id="itemError" class="hidden mt-1 text-sm text-red-500"></p>
                         </div>
                     </div>
                 </div>
-                <!--table from flowbite-->
-                <div class="relative h-full max-h-screen overflow-x-auto overflow-y-auto">
-                    <table id="itemsTable" class="w-full text-sm text-left text-gray-500 rtl:text-right">
-                        <thead class="text-xs text-black uppercase bg-[#00000042]">
+
+                <!-- Input Fields Section -->
+                <div class="flex gap-4 p-4 max-sm:flex-col max-sm:gap-3">
+                    <!-- Customer Select -->
+                    <div class="w-1/3 max-sm:w-full">
+                        <select id="customer" name="customer"
+                                class="w-full p-2.5 text-sm text-gray-700 bg-gray-50 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all">
+                            <option value="" disabled selected>Select Customer</option>
+                            @foreach ($customers as $customer)
+                                <option value="{{ $customer->id }}">{{ $customer->customer_name }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+
+                    <!-- Add Customer Button -->
+                    <button type="button" data-modal-target="customer-modal" data-modal-toggle="customer-modal"
+                            class="flex items-center justify-center px-4 py-2.5 text-sm font-medium text-white rounded-lg transition-all hover:opacity-90"
+                            style="background-color: {{ $settings[7]->value }}">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 16 16">
+                            <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0"/>
+                            <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8m8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1"/>
+                        </svg>
+                        Add Customer
+                    </button>
+
+                    <!-- Barcode Input -->
+                    <div class="flex-1 max-sm:w-full">
+                        <input type="text" id="itemCodeInput"
+                            class="w-full p-2.5 text-sm text-gray-700 bg-gray-50 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all"
+                            placeholder="Scan barcode or enter item code">
+                        <p id="itemError" class="hidden mt-1 text-xs text-red-500"></p>
+                    </div>
+                </div>
+
+                <!-- Items Table -->
+                <div class="relative h-full max-h-[50vh] overflow-auto border-b border-gray-200">
+                    <table id="itemsTable" class="w-full text-sm text-left text-gray-500">
+                        <thead class="sticky top-0 text-xs text-gray-700 uppercase bg-gray-50">
                             <tr>
                                 <th scope="col" class="px-6 py-3 rounded-tl-lg">Item Name</th>
                                 <th scope="col" class="px-6 py-3">Qty</th>
                                 <th scope="col" class="px-6 py-3">Price</th>
-                                <th scope="col" class="px-6 py-3">Item Discount</th>
-                                <!--<th scope="col" class="px-6 py-3">Total Discount</th>-->
+                                <th scope="col" class="px-6 py-3">Discount</th>
                                 <th scope="col" class="px-6 py-3">Subtotal</th>
-                                <th scope="col" class="px-6 py-3 rounded-tr-lg"></th>
+                                <th scope="col" class="px-6 py-3 rounded-tr-lg">Action</th>
                             </tr>
                         </thead>
-                        <tbody id="stored-items">
+                        <tbody id="stored-items" class="divide-y divide-gray-200">
+                            <!-- Items will be populated here -->
                         </tbody>
                     </table>
                 </div>
-                <!--white control panel-->
-                <div class="bg-[#0000000F] h-[200px] max-xl:h-fit flex flex-col rounded-b-lg">
-                    <!--info-->
-                    <span
-                        class="flex gap-3 h-fit w-full justify-evenly py-3 border-[#00000096] border-t-2 border-b-2 max-md:text-sm max-sm:text-xs max-md:flex-col max-md:p-2">
-                        <p>Total Quantity: <span id="addQuantity"></span></p>
-                        <p>Total Amount: Rs.<span id="total-amount"></span></p>
-                        <p>Grand Total: Rs. <span id="grand-total"></span></p>
-                    </span>
-                    <!--txts + btns-->
-                    <div class="flex items-center max-lg:flex-col">
-                        <!--txts-->
-                        <div id="due-amount"
-                            class="p-0 mt-4 text-[10px] sm:text-xs lg:text-sm font-semibold text-gray-800 sm:p-6 lg:p-4">
-                            <!-- The selected customer's ID and due amount will appear here -->
+
+                <!-- Summary and Controls Section -->
+                <div class="p-4 bg-gray-50 rounded-b-xl">
+                    <!-- Summary Info -->
+                    <div class="flex items-center justify-between py-3 border-b border-gray-200 max-sm:flex-col max-sm:gap-2 max-sm:items-start">
+                        <div class="text-sm font-medium text-gray-700">
+                            Total Quantity: <span id="addQuantity" class="font-bold">0</span>
+                        </div>
+                        <div class="text-sm font-medium text-gray-700">
+                            Total Amount: <span id="total-amount" class="font-bold">Rs. 0.00</span>
+                        </div>
+                        <div class="text-sm font-medium text-gray-700">
+                            Grand Total: <span id="grand-total" class="font-bold text-blue-600">Rs. 0.00</span>
+                        </div>
+                    </div>
+
+                    <!-- Controls -->
+                    <div class="flex items-start gap-4 mt-4 max-lg:flex-col">
+                        <!-- Customer Due Info -->
+                        <div id="due-amount" class="p-2 text-xs font-medium text-gray-600 bg-gray-100 rounded-lg max-sm:w-full">
+                            <!-- Customer due amount will appear here -->
                         </div>
 
-
-
-                        <div class="flex flex-col w-1/2 gap-2 p-2 max-lg:w-full">
-                            <div class="flex items-center justify-between max-sm:flex-col">
-                                <label for="itemDiscount"
-                                    class="block text-sm font-medium text-gray-900 lg:w-full text-end lg:pr-2 max-sm:text-xs">Discount</label>
+                        <!-- Discount Input -->
+                        <div class="flex-1 max-sm:w-full">
+                            <div class="flex items-center gap-2 max-sm:flex-col max-sm:items-start">
+                                <label for="itemDiscount" class="text-sm font-medium text-gray-700 whitespace-nowrap">
+                                    Discount
+                                </label>
                                 <input type="text" id="itemDiscount"
-                                    class="block p-2 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 sm:w-fit"
-                                    placeholder="0" required disabled />
-                            </div>
-                            <div class="flex items-center justify-between hidden">
-                                <label for="tax"
-                                    class="block text-sm font-medium text-gray-900 lg:w-full text-end lg:pr-2 max-sm:text-xs">Tax</label>
-                                <input type="text" id="tax"
-                                    class="block p-2 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 w-fit"
-                                    placeholder="0" required />
+                                    class="w-full p-2 text-sm text-gray-700 transition-all bg-white border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                                    placeholder="0" disabled>
                             </div>
                         </div>
-                        <!--btns-->
-                        <div class="grid w-1/2 grid-flow-col grid-cols-2 grid-rows-2 gap-4 p-2 max-lg:w-full">
-                            <button type="button" data-modal-target="payment-modal" data-modal-toggle="payment-modal"
+
+                        <!-- Action Buttons -->
+                        <div class="grid w-1/2 grid-cols-2 gap-3 max-lg:w-full max-sm:grid-cols-1">
+                            <button
+                                type="button"
+                                data-modal-target="payment-modal"
+                                data-modal-toggle="payment-modal"
                                 onclick="getDataForPaymentModal();"
-                                class="row-span-2 gap-2 flex justify-center items-center text-white bg-[{{ $settings[7]->value}}] focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 max-sm:px-2 py-2 max-sm:py-1 text-center inline-flex items-center max-sm:text-xs">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                                    class="bi bi-cash" viewBox="0 0 16 16">
-                                    <path d="M8 10a2 2 0 1 0 0-4 2 2 0 0 0 0 4" />
-                                    <path
-                                        d="M0 4a1 1 0 0 1 1-1h14a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1H1a1 1 0 0 1-1-1zm3 0a2 2 0 0 1-2 2v4a2 2 0 0 1 2 2h10a2 2 0 0 1 2-2V6a2 2 0 0 1-2-2z" />
+                                class="flex items-center justify-center gap-2 px-6 py-4 text-sm font-medium text-white transition-all rounded-xl hover:opacity-90"
+                                style="background-color: {{ $settings[7]->value }}"
+                            >
+                                <!-- Money Icon -->
+                                <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M12 8c-1.657 0-3 1.567-3 3.5S10.343 15 12 15s3-1.567 3-3.5S13.657 8 12 8zm0 0V5m0 10v3" />
                                 </svg>
                                 Pay All
                             </button>
-                            <button type="button" id="hold-all-button"
-                                class="flex inline-flex items-center justify-center h-full col-span-2 gap-2 px-5 py-2 text-sm font-medium text-center text-white bg-black rounded-lg focus:ring-4 focus:outline-none focus:ring-blue-300 max-sm:px-2 max-sm:py-1 max-sm:text-xs">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                                    class="bi bi-exclamation-triangle-fill" viewBox="0 0 16 16">
-                                    <path
-                                        d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5m.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2" />
+
+                            <!-- Hold All Button -->
+                            <button
+                                id="hold-all-button"
+                                class="flex items-center justify-center gap-2 px-6 py-4 text-sm font-medium text-white transition-all bg-gray-800 rounded-xl hover:bg-gray-700"
+                            >
+                                <!-- Pause Icon -->
+                                <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M10 9v6m4-6v6m-7 8h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v18a2 2 0 002 2z"/>
                                 </svg>
                                 Hold All
                             </button>
-                            <button type="button" id="cancelButton"
-                                class="flex inline-flex items-center justify-center h-full col-span-2 gap-2 px-5 py-2 text-sm font-medium text-center text-white bg-red-600 rounded-lg focus:ring-4 focus:outline-none focus:ring-blue-300 max-sm:px-2 max-sm:py-1 max-sm:text-xs">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                                    class="bi bi-slash-circle" viewBox="0 0 16 16">
-                                    <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16" />
-                                    <path
-                                        d="M11.354 4.646a.5.5 0 0 0-.708 0l-6 6a.5.5 0 0 0 .708.708l6-6a.5.5 0 0 0 0-.708" />
+                            
+                            <button id="cancelButton"
+                                    class="flex items-center justify-center gap-2 px-4 py-2.5 text-sm font-medium text-white bg-red-600 rounded-lg transition-all hover:bg-red-700 col-span-2 max-sm:col-span-1 hidden">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="currentColor" viewBox="0 0 16 16">
+                                    <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16"/>
+                                    <path d="M11.354 4.646a.5.5 0 0 0-.708 0l-6 6a.5.5 0 0 0 .708.708l6-6a.5.5 0 0 0 0-.708"/>
                                 </svg>
                                 Cancel
                             </button>
@@ -383,37 +391,37 @@
                     class="grid grid-cols-3 max-xl:grid-cols-5 max-lg:grid-cols-4 max-[600px]:grid-cols-2 max-[400px]:grid-cols-2 gap-3 overflow-y-auto p-3">
                     @foreach ($items as $item)
                     <button class="add-to-storage"
-    data-id="{{ $item->id }}"
-    data-item_name="{{ $item->item_name }}"
-    data-item_code="{{ $item->item_code }}"
-    data-addQuantity="{{ $item->addQuantity }}"
-    data-purchase_price="{{ $item->purchase_price }}"
-    data-retail_price="{{ $item->retail_price }}"
-    data-wholesale_price="{{ $item->wholesale_price }}"
-    {{ $item->quantity == 0 ? 'disabled' : '' }}
-    style="background-color: {{ $item->quantity == 0 ? '#e0e0e0' : '#ffffff' }}; cursor: {{ $item->quantity == 0 ? 'not-allowed' : 'pointer' }};">
-    <div class="bg-[#029ED90F] xl:h-[160px] max-xl:aspect-[4/5] flex flex-col justify-between rounded-md">
-        <span class="bg-[{{ $settings[7]->value}}] h-1/6 rounded-t-md text-white flex justify-center items-center text-sm {{ $item->minimum_qty > $item->quantity ? 'bg-red-500' : '' }}">
-            <p class="truncate">{{ $item->item_code }}</p>
-        </span>
-        <div class="flex flex-col justify-between p-1 h-5/6">
-            <center>
-                @if (!empty($item->getImageUrlAttribute()))
-                    <img src="{{ $item->getImageUrlAttribute() }}" alt="Product image" style="width: 80px; height: 80px; border-radius:5px;">
-                @else
-                    <img src="/images/placeholder.jpg" alt="Placeholder image" style="width: 80px; height: 80px; border-radius: 5px;">
-                @endif
-            </center>
-            <span class="flex flex-col text-xs text-center h-fit" id="stored-items">
-                <p class="truncate price-text price">{{ $item->retail_price }}</p>
-                <p class="truncate">{{ $item->item_name }}</p>
-                <p class="truncate">Quantity : {{ $item->quantity }}</p>
-            </span>
-        </div>
-    </div>
-    <!-- Custom Tooltip -->
-    <span class="tooltip">{{ $item->item_name }}</span>
-</button>
+                        data-id="{{ $item->id }}"
+                        data-item_name="{{ $item->item_name }}"
+                        data-item_code="{{ $item->item_code }}"
+                        data-addQuantity="{{ $item->addQuantity }}"
+                        data-purchase_price="{{ $item->purchase_price }}"
+                        data-retail_price="{{ $item->retail_price }}"
+                        data-wholesale_price="{{ $item->wholesale_price }}"
+                        {{ $item->quantity == 0 ? 'disabled' : '' }}
+                        style="background-color: {{ $item->quantity == 0 ? '#e0e0e0' : '#ffffff' }}; cursor: {{ $item->quantity == 0 ? 'not-allowed' : 'pointer' }};">
+                        <div class="bg-white xl:h-[160px] max-xl:aspect-[4/5] flex flex-col justify-between rounded-md border border-gray-300">
+                            <span class="bg-[{{ $settings[7]->value}}] h-1/6 rounded-t-md text-white flex justify-center items-center text-sm {{ $item->minimum_qty > $item->quantity ? 'bg-red-500' : '' }}">
+                                <p class="truncate">{{ $item->item_code }}</p>
+                            </span>
+                            <div class="flex flex-col justify-between p-1 h-5/6">
+                                <center>
+                                    @if (!empty($item->getImageUrlAttribute()))
+                                        <img src="{{ $item->getImageUrlAttribute() }}" alt="Product image" style="width: 80px; height: 80px; border-radius:5px;">
+                                    @else
+                                        <img src="/images/placeholder.jpg" alt="Placeholder image" style="width: 80px; height: 80px; border-radius: 5px;">
+                                    @endif
+                                </center>
+                                <span class="flex flex-col text-xs text-center h-fit" id="stored-items">
+                                    <p class="truncate price-text price">{{ $item->retail_price }}</p>
+                                    <p class="truncate">{{ $item->item_name }}</p>
+                                    <p class="truncate">Quantity : {{ $item->quantity }}</p>
+                                </span>
+                            </div>
+                        </div>
+                        <!-- Custom Tooltip -->
+                        <span class="tooltip">{{ $item->item_name }}</span>
+                    </button>
                     @endforeach
                 </div>
 
