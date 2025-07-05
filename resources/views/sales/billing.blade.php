@@ -252,7 +252,7 @@
 
                     <!-- Add Customer Button -->
                     <button type="button" data-modal-target="customer-modal" data-modal-toggle="customer-modal"
-                            class="flex items-center justify-center px-4 py-2.5 text-sm font-medium text-white rounded-lg transition-all hover:opacity-90"
+                            class="hidden flex items-center justify-center px-4 py-2.5 text-sm font-medium text-white rounded-lg transition-all hover:opacity-90"
                             style="background-color: {{ $settings[7]->value }}">
                         <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 16 16">
                             <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0"/>
@@ -262,7 +262,7 @@
                     </button>
 
                     <!-- Barcode Input -->
-                    <div class="flex-1 max-sm:w-full">
+                    <div class="flex-1 hidden max-sm:w-full">
                         <input type="text" id="itemCodeInput"
                             class="w-full p-2.5 text-sm text-gray-700 bg-gray-50 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all"
                             placeholder="Scan barcode or enter item code">
