@@ -241,10 +241,10 @@
                         </button>
 
                         <div class="flex gap-2">
-                            <button id="retailButton" class="px-4 py-1.5 text-sm bg-white text-gray-800 rounded-lg shadow-sm hover:bg-gray-50 transition-all">
+                            <button id="retailButton" class="px-4 py-1.5 text-sm bg-white text-gray-800 rounded-lg shadow-sm hover:bg-gray-50 transition-all border border-gray-300">
                                 Retail
                             </button>
-                            <button id="wholesaleButton" class="px-4 py-1.5 text-sm bg-white text-gray-800 rounded-lg shadow-sm hover:bg-gray-50 transition-all">
+                            <button id="wholesaleButton" class="px-4 py-1.5 text-sm bg-white text-gray-800 rounded-lg shadow-sm hover:bg-gray-50 transition-all border border-gray-300">
                                 Wholesale
                             </button>
                         </div>
