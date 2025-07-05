@@ -432,18 +432,7 @@
                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                         placeholder="Search for items..." required />
                 </span>
-                <!--custom combobox
-                <div class="w-full custom-select">
-                    <select id="search" name="city"
-                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 hidden">
-                        <option value="">Search Item</option>
-                        <option value="Item 1">Item 1</option>
-                        <option value="Item 2">Item 2</option>
-                        <option value="Item 3">Item 3</option>
-                        <option value="Item 4">Item 4</option>
-                    </select>
-                </div>
-                -->
+
                 <!--sidebar products cards-->
                 <div id="searchResults"
                     class="grid grid-cols-3 max-xl:grid-cols-5 max-lg:grid-cols-4 max-[600px]:grid-cols-2 max-[400px]:grid-cols-2 gap-3 overflow-y-auto p-3">
