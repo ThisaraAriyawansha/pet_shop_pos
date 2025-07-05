@@ -263,30 +263,36 @@
             <!--blue div + textfields + table-->
             <div class="flex flex-col w-2/3 bg-white border border-gray-200 shadow-lg rounded-xl max-xl:w-full">
                 <!-- Header Section -->
-                <div class="bg-gradient-to-r from-[{{ $settings[7]->value }}] to-[{{ $settings[4]->value }}] h-20 rounded-t-xl flex items-center justify-between px-6 max-sm:flex-col max-sm:h-fit max-sm:py-3 max-sm:gap-2">
-                    <div class="text-lg font-medium text-white max-sm:text-base max-sm:w-full max-sm:text-center">
-                        Billing System
-                    </div>
-                    
-                    <div class="flex gap-3 max-sm:justify-center max-sm:w-full max-sm:flex-wrap">
-                        <button id="view-hold-list" data-modal-target="default-modal" data-modal-toggle="default-modal" 
-                                class="relative px-4 py-1.5 text-sm bg-white text-gray-800 rounded-lg shadow-sm hover:bg-gray-50 transition-all flex items-center gap-1">
+                <div class="flex flex-col items-start justify-between gap-3 p-4 bg-white border-b border-gray-200 rounded-xl sm:flex-row sm:items-center">
+                    <!-- Title -->
+                    <h1 class="text-lg font-bold text-gray-800 sm:text-xl">Sales Terminal</h1>
+
+                    <!-- Right controls -->
+                    <div class="flex flex-col items-start w-full gap-2 sm:flex-row sm:items-center sm:space-x-3 sm:gap-0 sm:w-auto">
+                        <!-- View Hold List Button -->
+                        <button id="view-hold-list"
+                                data-modal-target="default-modal"
+                                data-modal-toggle="default-modal"
+                                class="relative w-full px-4 py-2 text-sm transition-colors bg-gray-100 rounded-lg hover:bg-gray-200 sm:w-auto">
                             View Hold List
-                            <span id="hold-list-count" class="flex items-center justify-center w-5 h-5 text-xs text-white bg-red-500 rounded-full">
+                            <span id="hold-list-count"
+                                class="absolute flex items-center justify-center w-5 h-5 text-xs text-white bg-red-500 rounded-full -top-1 -right-1">
                                 0
                             </span>
                         </button>
 
-                        <div class="flex gap-2">
-                            <button id="retailButton" class="px-4 py-1.5 text-sm bg-white text-gray-800 rounded-lg shadow-sm hover:bg-gray-50 transition-all border border-gray-300">
+                        <!-- Toggle Buttons -->
+                        <div class="flex w-full p-1 bg-gray-100 rounded-lg sm:w-auto">
+                            <button id="retailButton" class="w-1/2 px-4 py-2 font-medium text-gray-800 bg-white rounded-md sm:w-auto hover:bg-gray-200">
                                 Retail
                             </button>
-                            <button id="wholesaleButton" class="px-4 py-1.5 text-sm bg-white text-gray-800 rounded-lg shadow-sm hover:bg-gray-50 transition-all border border-gray-300">
+                            <button id="wholesaleButton" class="w-1/2 px-4 py-2 text-gray-600 rounded-md sm:w-auto hover:bg-gray-200">
                                 Wholesale
                             </button>
                         </div>
                     </div>
                 </div>
+
 
                 <!-- Input Fields Section -->
                 <div class="flex gap-4 p-4 max-sm:flex-col max-sm:gap-3">
@@ -389,9 +395,10 @@
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                         d="M12 8c-1.657 0-3 1.567-3 3.5S10.343 15 12 15s3-1.567 3-3.5S13.657 8 12 8zm0 0V5m0 10v3" />
                                 </svg>
-                                Pay All
+                                Process Payment
                             </button>
 
+                            
                             <!-- Hold All Button -->
                             <button
                                 id="hold-all-button"
