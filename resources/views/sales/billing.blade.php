@@ -122,9 +122,10 @@
 </script>
 <body class="h-dvh max-lg:h-fit" onload="allPriceCalc();">
     <!--Nav-->
-    <header class="sticky top-0 z-50 flex items-center justify-between w-full px-6 py-2 nav-gradient" style="background: {{ $settings[7]->value }};">
-    <!-- Back Button -->
-            <div class="flex items-center">
+    <header class="sticky top-0 z-50 flex items-center justify-between w-full px-4 py-2 nav-gradient" style="background: {{ $settings[7]->value }};">
+    <!-- Left Section - Controls -->
+    <div class="flex items-center space-x-4">
+        <!-- Fullscreen Toggle -->
         <button onclick="toggleFullScreen()" class="relative group">
             <div class="flex items-center justify-center w-10 h-10 transition-all bg-white rounded-full group-hover:rotate-1">
                 <span id="fullscreen-icon" class="text-xl font-bold" style="color: {{ $settings[14]->value}};">
@@ -136,40 +137,76 @@
             </span>
         </button>
 
-                <!-- Logo with Holographic Effect and Navigation -->
-                <div class="flex items-center space-x-3 cursor-pointer" onclick="window.location.href = '/dashboard';">
-                    <div class="relative">
-                        <img src="{{ asset($siteSetting->company_logo) }}" alt="Logo" 
-                            class="object-contain w-12 h-12 rounded-lg pulse-animation">
-                        <div class="absolute inset-0 bg-blue-500 rounded-lg mix-blend-overlay opacity-20"></div>
-                    </div>
-                    <h1 class="text-xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-400">
-                        {{ $settings[6]->value }}
-                    </h1>
-                </div>
+        <!-- Logo -->
+        <div class="flex items-center space-x-3 cursor-pointer" onclick="window.location.href = '/dashboard';">
+            <div class="relative">
+                <img src="{{ asset($siteSetting->company_logo) }}" alt="Logo" 
+                    class="object-contain w-10 h-10 rounded-lg md:w-12 md:h-12">
+                <div class="absolute inset-0 bg-blue-500 rounded-lg mix-blend-overlay opacity-20"></div>
             </div>
+            <h1 class="text-lg font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-400 md:text-xl">
+                {{ $settings[6]->value }}
+            </h1>
+        </div>
+    </div>
 
-            <!-- User Controls -->
-            <div class="flex items-center space-x-6">
-                <div class="text-right">
-                    <p class="text-sm text-gray-300">Welcome back,</p>
-                    <p class="font-medium text-white">{{ $siteSetting->site_name }}</p>
+    <!-- Center Section - Date/Time (Hidden on mobile) -->
+    <div class="flex-col items-center justify-center hidden md:flex">
+        <div class="text-sm font-medium text-white" id="current-date"></div>
+        <div class="text-lg font-bold text-white" id="current-time"></div>
+    </div>
+
+    <!-- Right Section - User Controls -->
+    <div class="flex items-center space-x-4 md:space-x-6">
+        <!-- Date/Time for Mobile -->
+        <div class="flex flex-col items-end md:hidden">
+            <div class="text-xs text-white" id="mobile-date"></div>
+            <div class="text-sm font-medium text-white" id="mobile-time"></div>
+        </div>
+        
+        <!-- User Info -->
+        <div class="hidden text-right sm:block">
+            <p class="text-xs text-gray-300 md:text-sm">Welcome back,</p>
+            <p class="text-sm font-medium text-white md:text-base">{{ $siteSetting->site_name }}</p>
+        </div>
+        
+        <!-- Logout Button -->
+        <form method="POST" action="{{ route('logout') }}">
+            @csrf
+            <button type="submit" class="relative group">
+                <div class="flex items-center justify-center w-8 h-8 transition-all rounded-full md:w-10 md:h-10 bg-gradient-to-br from-blue-500 to-purple-600 group-hover:rotate-12">
+                    <i class="text-sm text-white fas fa-sign-out-alt md:text-base"></i>
                 </div>
-                
-                <!-- Logout Button with Hover Effect -->
-                <form method="POST" action="{{ route('logout') }}">
-                    @csrf
-                    <button type="submit" class="relative group">
-                        <div class="flex items-center justify-center w-10 h-10 transition-all rounded-full bg-gradient-to-br from-blue-500 to-purple-600 group-hover:rotate-12">
-                            <i class="text-white fas fa-sign-out-alt"></i>
-                        </div>
-                        <span class="absolute px-2 py-1 text-xs text-white transition-opacity transform -translate-x-1/2 bg-black rounded opacity-0 -bottom-7 left-1/2 bg-opacity-70 group-hover:opacity-100 whitespace-nowrap">
-                            Sign Out
-                        </span>
-                    </button>
-                </form>
-            </div>
-        </header>
+                <span class="absolute px-2 py-1 text-xs text-white transition-opacity transform -translate-x-1/2 bg-black rounded opacity-0 -bottom-7 left-1/2 bg-opacity-70 group-hover:opacity-100 whitespace-nowrap">
+                    Sign Out
+                </span>
+            </button>
+        </form>
+    </div>
+</header>
+
+<script>
+    // Update date and time
+    function updateDateTime() {
+        const now = new Date();
+        
+        // Format options
+        const dateOptions = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+        const timeOptions = { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: true };
+        
+        // Desktop display
+        document.getElementById('current-date').textContent = now.toLocaleDateString(undefined, dateOptions);
+        document.getElementById('current-time').textContent = now.toLocaleTimeString(undefined, timeOptions);
+        
+        // Mobile display (shorter format)
+        document.getElementById('mobile-date').textContent = now.toLocaleDateString(undefined, { month: 'short', day: 'numeric' });
+        document.getElementById('mobile-time').textContent = now.toLocaleTimeString(undefined, { hour: '2-digit', minute: '2-digit', hour12: true });
+    }
+
+    // Update immediately and then every second
+    updateDateTime();
+    setInterval(updateDateTime, 1000);
+</script>
 
     <div class="h-[90%] flex flex-col">
         <!-- Loading Spinner
