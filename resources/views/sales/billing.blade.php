@@ -122,40 +122,54 @@
 </script>
 <body class="h-dvh max-lg:h-fit" onload="allPriceCalc();">
     <!--Nav-->
-    <div
-        class="nav bg-[{{ $settings[7]->value}}] w-full h-[10%] max-lg:h-[17dvh] max-sm:py-6  flex justify-between items-center max-lg:justify-center max-lg:flex-col">
-        <span class="flex items-center gap-3 ml-20 max-lg:ml-0 max-sm:scale-75">
-        <button onclick="toggleFullScreen()"
-            class="rounded-full w-[50px] aspect-square bg-white flex justify-center items-center hover:scale-90 transition-all">
-            <!-- Icon will change based on fullscreen state -->
-            <span id="fullscreen-icon" class="text-4xl font-bold text-[{{ $settings[14]->value}}]">
-                <i class="fas fa-expand"></i> <!-- Modern Fullscreen icon -->
+    <header class="sticky top-0 z-50 flex items-center justify-between w-full px-6 py-2 nav-gradient" style="background: {{ $settings[7]->value }};">
+    <!-- Back Button -->
+            <div class="flex items-center">
+        <button onclick="toggleFullScreen()" class="relative group">
+            <div class="flex items-center justify-center w-10 h-10 transition-all bg-white rounded-full group-hover:rotate-1">
+                <span id="fullscreen-icon" class="text-xl font-bold" style="color: {{ $settings[14]->value}};">
+                    <i class="fas fa-expand"></i>
+                </span>
+            </div>
+            <span class="absolute px-2 py-1 text-xs text-white transition-opacity transform -translate-x-1/2 bg-black rounded opacity-0 -bottom-7 left-1/2 bg-opacity-70 group-hover:opacity-100 whitespace-nowrap">
+                Toggle Fullscreen
             </span>
         </button>
 
+                <!-- Logo with Holographic Effect and Navigation -->
+                <div class="flex items-center space-x-3 cursor-pointer" onclick="window.location.href = '/dashboard';">
+                    <div class="relative">
+                        <img src="{{ asset($siteSetting->company_logo) }}" alt="Logo" 
+                            class="object-contain w-12 h-12 rounded-lg pulse-animation">
+                        <div class="absolute inset-0 bg-blue-500 rounded-lg mix-blend-overlay opacity-20"></div>
+                    </div>
+                    <h1 class="text-xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-400">
+                        {{ $settings[6]->value }}
+                    </h1>
+                </div>
+            </div>
 
-            <button onclick="window.location.href = '/dashboard';"
-                class="p-2 text-[{{ $settings[14]->value}}] rounded-lg bg-white flex gap-3 justify-center items-center hover:scale-90 transition-all">
-                <i class="text-xl text-[{{ $settings[14]->value}}] fas fa-city"></i>
-                Go to Main Panel
-            </button>
-        </span>
-        <span class="flex items-center gap-3 mr-20 max-lg:mr-0 max-sm:scale-75">
-            <!--Logged User-->
-            <h3 class="text-2xl text-[{{ $settings[15]->value}}] max-md:text-sm">
-            Welcome {{ $siteSetting->site_name }}
-            </h3>
-            <!--log out btn-->
-            <form method="POST" action="{{ route('logout') }}">
-                @csrf
-                <button type="submit"
-                    class="rounded-full w-[50px] aspect-square bg-white flex justify-center items-center hover:scale-90 transition-all mt-5">
-                    <i class="text-xl font-bold text-[{{ $settings[14]->value}}] fas fa-sign-out-alt"></i>
+            <!-- User Controls -->
+            <div class="flex items-center space-x-6">
+                <div class="text-right">
+                    <p class="text-sm text-gray-300">Welcome back,</p>
+                    <p class="font-medium text-white">{{ $siteSetting->site_name }}</p>
+                </div>
+                
+                <!-- Logout Button with Hover Effect -->
+                <form method="POST" action="{{ route('logout') }}">
+                    @csrf
+                    <button type="submit" class="relative group">
+                        <div class="flex items-center justify-center w-10 h-10 transition-all rounded-full bg-gradient-to-br from-blue-500 to-purple-600 group-hover:rotate-12">
+                            <i class="text-white fas fa-sign-out-alt"></i>
+                        </div>
+                        <span class="absolute px-2 py-1 text-xs text-white transition-opacity transform -translate-x-1/2 bg-black rounded opacity-0 -bottom-7 left-1/2 bg-opacity-70 group-hover:opacity-100 whitespace-nowrap">
+                            Sign Out
+                        </span>
                     </button>
-
-            </form>
-        </span>
-    </div>
+                </form>
+            </div>
+        </header>
 
     <div class="h-[90%] flex flex-col">
         <!-- Loading Spinner
