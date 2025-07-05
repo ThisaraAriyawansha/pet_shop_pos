@@ -142,7 +142,7 @@
             </div>
         </a>
     </div>
-
+</div>
 
 
 @include('layouts.footer')
