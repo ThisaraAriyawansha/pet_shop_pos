@@ -287,7 +287,7 @@
                 <!-- Items Table -->
                 <div class="relative h-full max-h-[50vh] overflow-auto border-b border-gray-200">
                     <table id="itemsTable" class="w-full text-sm text-left text-gray-500">
-                        <thead class="sticky top-0 text-xs text-gray-700 uppercase bg-gray-50">
+                        <thead class="sticky top-0 text-xs text-gray-700 uppercase bg-gray-200">
                             <tr>
                                 <th scope="col" class="px-6 py-3 rounded-tl-lg">Item Name</th>
                                 <th scope="col" class="px-6 py-3">Qty</th>
