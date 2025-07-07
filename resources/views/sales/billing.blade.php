@@ -325,7 +325,7 @@
                 </div>
 
                 <!-- Items Table -->
-                <div class="relative h-full max-h-[50vh] overflow-auto border-b border-gray-200">
+                <div class="relative h-full max-h-[90vh] overflow-auto border-b border-gray-200">
                     <table id="itemsTable" class="w-full text-sm text-left text-gray-500">
                         <thead class="sticky top-0 text-xs text-white uppercase bg-[{{ $settings[7]->value }}]">
                             <tr>
