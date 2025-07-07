@@ -2,38 +2,42 @@
 <div class="flex flex-col flex-grow">
     <!-- Breadcrumbs -->
     <div class="px-12 py-5 max-sm:px-6">
-        <nav class="flex" aria-label="Breadcrumb">
-            <ol class="inline-flex items-center space-x-1 md:space-x-2 rtl:space-x-reverse">
-                <li class="inline-flex items-center">
-                    <p class="inline-flex items-center text-sm font-medium text-gray-700">
-                        <svg class="w-3 h-3 me-2.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
-                            <path d="m19.707 9.293-2-2-7-7a1 1 0 0 0-1.414 0l-7 7-2 2a1 1 0 0 0 1.414 1.414L2 10.414V18a2 2 0 0 0 2 2h3a1 1 0 0 0 1-1v-4a1 1 0 0 1 1-1h2a1 1 0 1 1 1 1v4a1 1 0 0 0 1 1h3a2 2 0 0 0 2-2v-7.586l.293.293a1 1 0 0 0 1.414-1.414Z" />
-                        </svg>
-                        Main Panel
-                    </p>
-                </li>
-                <li>
-                    <div class="flex items-center">
-                        <svg class="w-3 h-3 mx-1 text-gray-400 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
-                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 9 4-4-4-4" />
-                        </svg>
-                        <p class="text-sm font-medium text-gray-700 ms-1 md:ms-2">Settings</p>
-                    </div>
-                </li>
-                <li aria-current="page">
-                    <div class="flex items-center">
-                        <svg class="w-3 h-3 mx-1 text-gray-400 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
-                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 9 4-4-4-4" />
-                        </svg>
-                        <p class="text-sm font-medium text-gray-700 ms-1 md:ms-2">Change Site</p>
-                    </div>
-                </li>
-            </ol>
-        </nav>
-    </div>
+    <nav class="flex" aria-label="Breadcrumb">
+                <ol class="inline-flex items-center space-x-1 md:space-x-2 rtl:space-x-reverse">
+                    <li class="inline-flex items-center">
+                        <a href="{{ asset('/dashboard')}}" class="inline-flex items-center text-sm font-medium text-gray-500 hover:text-blue-600">
+                            <svg class="w-3 h-3 me-2.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                                <path d="m19.707 9.293-2-2-7-7a1 1 0 0 0-1.414 0l-7 7-2 2a1 1 0 0 0 1.414 1.414L2 10.414V18a2 2 0 0 0 2 2h3a1 1 0 0 0 1-1v-4a1 1 0 0 1 1-1h2a1 1 0 1 1 1 1v4a1 1 0 0 0 1 1h3a2 2 0 0 0 2-2v-7.586l.293.293a1 1 0 0 0 1.414-1.414Z" />
+                            </svg>
+                            Main Panel
+                        </a>
+                    </li>
+                    <li>
+                        <div class="flex items-center">
+                            <svg class="w-3 h-3 mx-1 text-gray-400 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
+                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 9 4-4-4-4" />
+                            </svg>
+                            <a href="{{ asset('/settings/settings')}}" class="text-sm font-medium text-gray-500 hover:text-blue-600 ms-1 md:ms-2">Settings</a>
+                        </div>
+                    </li>
+                    <li aria-current="page">
+                        <div class="flex items-center">
+                            <svg class="w-3 h-3 mx-1 text-gray-400 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
+                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 9 4-4-4-4" />
+                            </svg>
+                            <span class="text-sm font-medium text-blue-600 ms-1 md:ms-2">Site Settings</span>
+                        </div>
+                    </li>
+                </ol>
+            </nav>
+        </div>
 
     <div class="p-6">
         <div class="flex flex-col flex-grow h-full p-6 border-2 rounded-lg">
+                        <div class="mb-8">
+                <h2 class="mb-2 text-lg font-semibold text-gray-800">Select Setting to Update</h2>
+                <p class="text-sm text-gray-500">Choose from the dropdown below to modify different site settings</p>
+            </div>
             <div class="grid gap-6 mb-6 md:grid-cols-3">
                 <div class="md:col-span-2">
                     <label for="key" class="block mb-2 text-sm font-medium text-black">KEY</label>
@@ -72,21 +76,31 @@
         </div>
 
 
-        <div class="flex items-center justify-center w-full gap-4 max-sm:flex-col max-sm:p-0">
-            <button type="submit" class="py-3 px-6 bg-[#029ED9] text-white rounded-lg max-sm:py-1 max-sm:px-3 max-sm:w-full hidden">
-                Add
-            </button>
-            <button type="button" id="update-btn" class="px-6 py-3 text-white bg-[{{ $settings[7]->value}}] rounded-lg max-sm:py-1 max-sm:px-3 max-sm:w-full">
-                Update
-            </button>
-            <button type="button" id="reset-system-btn" 
-                class="px-6 py-3 text-white bg-[#0c0c0c] rounded-lg max-sm:py-1 max-sm:px-3 max-sm:w-full">
-                Reset System
-            </button>
-            <button type="button" class="px-6 py-3 text-white bg-red-600 rounded-lg max-sm:py-1 max-sm:px-3 max-sm:w-full" 
-                onclick="window.location.href='/settings/settings'">
-                Cancel
-            </button>
+        <div class="flex items-center justify-end w-full gap-4 pt-6 mt-6 border-t border-gray-200 max-sm:flex-col max-sm:items-stretch">
+                    <button type="button" id="reset-system-btn" 
+                        class="px-6 py-2.5 text-white bg-gray-800 rounded-lg hover:bg-gray-900 transition-colors max-sm:w-full flex items-center justify-center space-x-2">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 20 20" fill="currentColor">
+                            <path fill-rule="evenodd" d="M4 2a1 1 0 011 1v2.101a7.002 7.002 0 0111.601 2.566 1 1 0 11-1.885.666A5.002 5.002 0 005.999 7H9a1 1 0 010 2H4a1 1 0 01-1-1V3a1 1 0 011-1zm.008 9.057a1 1 0 011.276.61A5.002 5.002 0 0014.001 13H11a1 1 0 110-2h5a1 1 0 011 1v5a1 1 0 11-2 0v-2.101a7.002 7.002 0 01-11.601-2.566 1 1 0 01.61-1.276z" clip-rule="evenodd" />
+                        </svg>
+                        <span>Reset System</span>
+                    </button>
+                    
+                    <button type="button" class="px-6 py-2.5 text-white bg-red-600 rounded-lg hover:bg-red-700 transition-colors max-sm:w-full flex items-center justify-center space-x-2" 
+                        onclick="window.location.href='/settings/settings'">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 20 20" fill="currentColor">
+                            <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd" />
+                        </svg>
+                        <span>Cancel</span>
+                    </button>
+                    
+                    <button type="button" id="update-btn" class="px-6 py-2.5 text-white bg-blue-600 rounded-lg hover:bg-blue-700 transition-colors max-sm:w-full flex items-center justify-center space-x-2">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 20 20" fill="currentColor">
+                            <path d="M7.707 10.293a1 1 0 10-1.414 1.414l3 3a1 1 0 001.414 0l3-3a1 1 0 00-1.414-1.414L11 11.586V6h5a2 2 0 012 2v7a2 2 0 01-2 2H4a2 2 0 01-2-2V8a2 2 0 012-2h5v5.586l-1.293-1.293zM9 4a1 1 0 012 0v2H9V4z" />
+                        </svg>
+                        <span>Update Setting</span>
+                    </button>
+                </div>
+            </div>
         </div>
 
         </div>
