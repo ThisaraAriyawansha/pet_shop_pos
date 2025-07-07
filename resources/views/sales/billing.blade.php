@@ -2294,10 +2294,9 @@ console.log(localStorage);
                                     ${(item.subtotal || item[selectedPriceType + '_price'] * 1).toFixed(2)}<!-- Subtotal initially based on price -->
                                     </td> <!-- Subtotal will be calculated here -->
                                     <td class="px-6 py-4">
-                                        <button class="p-3 text-white bg-red-600 border-2 rounded-lg" onclick="removeItem(${index})">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                                                class="bi bi-trash-fill" viewBox="0 0 16 16">
-                                                <path d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5M8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5m3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0" />
+                                        <button class="p-2.5 text-red-600 border-2 border-red-500 hover:bg-red-50 rounded-full transition-all duration-200 hover:shadow-sm" onclick="removeItem(${index})" aria-label="Remove">
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="currentColor" viewBox="0 0 16 16">
+                                                <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
                                             </svg>
                                         </button>
                                     </td>
