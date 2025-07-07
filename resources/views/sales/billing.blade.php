@@ -266,6 +266,15 @@
                 <div class="flex flex-col items-start justify-between gap-3 p-4 bg-white border-b border-gray-200 rounded-xl sm:flex-row sm:items-center">
                     <!-- Title -->
                     <h1 class="text-lg font-bold text-gray-800 sm:text-xl">Sales Terminal</h1>
+                    <div class="w-1/3 max-sm:w-full">
+                        <select id="customer" name="customer"
+                                class="w-full p-2.5 text-sm text-gray-700 bg-gray-50 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all">
+                            <option value="" disabled selected>Select Customer</option>
+                            @foreach ($customers as $customer)
+                                <option value="{{ $customer->id }}">{{ $customer->customer_name }}</option>
+                            @endforeach
+                        </select>
+                    </div>
 
                     <!-- Right controls -->
                     <div class="flex flex-col items-start w-full gap-2 sm:flex-row sm:items-center sm:space-x-3 sm:gap-0 sm:w-auto">
@@ -295,17 +304,8 @@
 
 
                 <!-- Input Fields Section -->
-                <div class="flex gap-4 p-4 max-sm:flex-col max-sm:gap-3">
+                <div class="flex gap-1 p-1 max-sm:flex-col max-sm:gap-3">
                     <!-- Customer Select -->
-                    <div class="w-1/3 max-sm:w-full">
-                        <select id="customer" name="customer"
-                                class="w-full p-2.5 text-sm text-gray-700 bg-gray-50 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all">
-                            <option value="" disabled selected>Select Customer</option>
-                            @foreach ($customers as $customer)
-                                <option value="{{ $customer->id }}">{{ $customer->customer_name }}</option>
-                            @endforeach
-                        </select>
-                    </div>
 
                     <!-- Add Customer Button -->
                     <button type="button" data-modal-target="customer-modal" data-modal-toggle="customer-modal"
@@ -317,6 +317,10 @@
                         </svg>
                         Add Customer
                     </button>
+                    <div class="flex-1 hidden max-sm:w-full"> 
+                        <input type="text" id="itemCodeInput" class="w-full p-2.5 text-sm text-gray-700 bg-gray-50 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all" placeholder="Scan barcode or enter item code"> <p id="itemError" class="hidden mt-1 text-xs text-red-500">
+                            
+                        </p> </div>
 
                 </div>
 
