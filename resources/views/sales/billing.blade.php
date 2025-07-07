@@ -382,7 +382,21 @@
 
                         <!-- Action Buttons -->
                         <div class="grid w-1/2 grid-cols-2 gap-3 max-lg:w-full max-sm:grid-cols-1">
+                            
+                            <!-- Hold All Button -->
                             <button
+                                id="hold-all-button"
+                                class="flex items-center justify-center gap-2 px-6 py-4 text-sm font-medium text-white transition-all bg-gray-800 rounded-xl hover:bg-gray-700"
+                            >
+                                <!-- Pause Icon -->
+                                <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M10 9v6m4-6v6m-7 8h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v18a2 2 0 002 2z"/>
+                                </svg>
+                                Hold All
+                            </button>
+
+                         <button
                                 type="button"
                                 data-modal-target="payment-modal"
                                 data-modal-toggle="payment-modal"
@@ -396,20 +410,6 @@
                                         d="M12 8c-1.657 0-3 1.567-3 3.5S10.343 15 12 15s3-1.567 3-3.5S13.657 8 12 8zm0 0V5m0 10v3" />
                                 </svg>
                                 Process Payment
-                            </button>
-
-                            
-                            <!-- Hold All Button -->
-                            <button
-                                id="hold-all-button"
-                                class="flex items-center justify-center gap-2 px-6 py-4 text-sm font-medium text-white transition-all bg-gray-800 rounded-xl hover:bg-gray-700"
-                            >
-                                <!-- Pause Icon -->
-                                <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M10 9v6m4-6v6m-7 8h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v18a2 2 0 002 2z"/>
-                                </svg>
-                                Hold All
                             </button>
                             
                             <button id="cancelButton"
@@ -448,9 +448,11 @@
                         {{ $item->quantity == 0 ? 'disabled' : '' }}
                         style="background-color: {{ $item->quantity == 0 ? '#e0e0e0' : '#ffffff' }}; cursor: {{ $item->quantity == 0 ? 'not-allowed' : 'pointer' }};">
                         <div class="bg-white xl:h-[160px] max-xl:aspect-[4/5] flex flex-col justify-between rounded-md border border-gray-300">
-                            <span class="bg-[{{ $settings[7]->value}}] h-1/6 rounded-t-md text-white flex justify-center items-center text-sm {{ $item->minimum_qty > $item->quantity ? 'bg-red-500' : '' }}">
+                            <div class="bg-gradient-to-r from-[{{ $settings[7]->value }}] to-[{{ $settings[7]->value }}90] h-8 rounded-t-lg text-white flex items-center px-2 justify-between text-xs font-medium {{ $item->minimum_qty > $item->quantity ? 'from-red-500 to-red-400' : '' }}">
                                 <p class="truncate">{{ $item->item_code }}</p>
-                            </span>
+                                <span class="bg-white/20 px-1.5 py-0.5 rounded-full">{{ $item->quantity }}</span>
+                            </div>
+        
                             <div class="flex flex-col justify-between p-1 h-5/6">
                                 <center>
                                     @if (!empty($item->getImageUrlAttribute()))
@@ -460,10 +462,14 @@
                                     @endif
                                 </center>
                                 <span class="flex flex-col text-xs text-center h-fit" id="stored-items">
-                                    <p class="truncate price-text price">{{ $item->retail_price }}</p>
-                                    <p class="truncate">{{ $item->item_name }}</p>
-                                    <p class="truncate">Quantity : {{ $item->quantity }}</p>
+                                    <p class="text-lg font-medium text-gray-900 truncate">{{ $item->item_name }}</p>
+
+                                      <div class="flex items-center justify-between">
+                                            <span class="text-sm text-indigo-600 truncate price-text price">{{ $item->retail_price }}</span>
+                                            <span class="text-xs text-gray-500 truncate">Qty: {{ $item->quantity }}</span>
+                                        </div>
                                 </span>
+                                
                             </div>
                         </div>
                         <!-- Custom Tooltip -->
