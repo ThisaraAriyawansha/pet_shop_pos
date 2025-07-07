@@ -463,9 +463,10 @@
                                 </center>
                                 <span class="flex flex-col text-xs text-center h-fit" id="stored-items">
                                     <p class="text-lg font-medium text-gray-900 truncate">{{ $item->item_name }}</p>
+                                    <p class="hidden truncate">{{ $item->item_name }}</p>
 
                                       <div class="flex items-center justify-between">
-                                            <span class="text-sm text-indigo-600 truncate price-text price">{{ $item->retail_price }}</span>
+                                            <span class="text-sm text-[{{ $settings[7]->value }}] truncate price-text price">{{ $item->retail_price }}</span>
                                             <span class="text-xs text-gray-500 truncate">Qty: {{ $item->quantity }}</span>
                                         </div>
                                 </span>
