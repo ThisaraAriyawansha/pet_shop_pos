@@ -75,7 +75,7 @@
 
         @if(has_permission(46))
         <a href="{{ asset('suppliers/importSupplier')}}" class="group">
-            <div class="h-full p-6 transition-all duration-300 transform bg-[{{ $settings[7]->value }}] shadow-sm rounded-xl hover:shadow-md hover:-translate-y-1">
+            <div class="h-full p-6 transition-all duration-300 transform bg-[{{ $settings[7]->value }}] shadow-sm rounded-xl hover:shadow-md hover:-translate-y-1 hidden">
                 <div class="flex flex-col items-center justify-center h-full text-center">
                     <div class="p-4 mb-4 transition-colors duration-300 rounded-full bg-gradient-to-br from-purple-500 to-purple-700">
                         <img src="{{ asset('images/suppliers/importSuppliers.png') }}" alt="Import Suppliers" class="w-8 h-8">
