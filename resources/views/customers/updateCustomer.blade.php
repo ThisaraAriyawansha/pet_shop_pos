@@ -127,7 +127,7 @@
                     </div>
                 </div>
 
-                <div class="grid gap-6 mb-6 md:grid-cols-3">
+                <div class="grid hidden gap-6 mb-6 md:grid-cols-3">
                     <div>
                         <label for="due" class="block mb-2 text-sm font-medium text-black">Due Amount</label>
                         <input id="due" name="due" type="text" value="{{ old('due', $customer->due_amount) }}"
