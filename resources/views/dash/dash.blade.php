@@ -189,7 +189,6 @@
         <!-- Sales Chart -->
         <div class="p-6 bg-white shadow-sm rounded-xl lg:col-span-2">
             <div class="flex items-center justify-between">
-                <h3 class="text-lg font-medium text-gray-800">Item Details</h3>
                 <div class="flex space-x-2">
                     <button id="chartBtn" class="px-4 py-2 text-sm font-medium text-white bg-gray-800 rounded-lg hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-500">
                         Chart
@@ -200,9 +199,11 @@
                 </div>
             </div>
             <div id="chart" class="mt-6">
+            <h3 class="text-lg font-medium text-gray-800">Sales Chart</h3>
                 <div id="labels-chart"></div>
             </div>
             <div id="table" class="hidden mt-6 overflow-hidden rounded-lg">
+         <h3 class="text-lg font-medium text-gray-800">Item Stock</h3>
                 <div class="overflow-x-auto">
                     <table class="min-w-full divide-y divide-gray-200">
                         <thead class="bg-gray-800">
