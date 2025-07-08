@@ -36,33 +36,7 @@
                     </li>
                 </ol>
                 <!-- Button Controls -->
-                <div class="flex items-center justify-between w-full gap-2 px-6 py-3 max-sm:px-3 max-md:flex-col">
-                    <span class="ml-auto flex gap-2 max-sm:gap-1 max-[350px]:scale-75">
-                        <button id="copyButton" class="px-4 py-2 text-sm text-white bg-black rounded-md max-sm:px-2 max-sm:py-1">Copy</button>
-                        <button class="px-4 py-2 text-sm text-white bg-black rounded-md max-sm:px-2 max-sm:py-1" onclick="exportTableToCSV('PermissionTable.csv')">CSV</button>
-                        <button class="px-4 py-2 text-sm text-white bg-black rounded-md max-sm:px-2 max-sm:py-1" onclick="exportTableToExcel('PermissionTable.xlsx')">Excel</button>
-                        <button class="px-4 py-2 text-sm text-white bg-black rounded-md max-sm:px-2 max-sm:py-1" onclick="exportTableToPDF()">PDF</button>
-                        <button data-popover-target="popover-click" data-popover-trigger="click" type="button" class="px-4 py-2 text-sm text-white bg-black rounded-md max-sm:px-2 max-sm:py-1">
-                            Column Visibility
-                        </button>
-                        <div data-popover id="popover-click" role="tooltip" class="absolute z-10 invisible inline-block text-sm text-gray-500 transition-opacity duration-300 bg-white border border-gray-200 rounded-lg shadow-sm opacity-0 w-fit">
-                            <ul class="flex flex-col w-full text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg">
-                                <li>
-                                    <input id="filter_permission_name" type="checkbox" checked class="hidden peer">
-                                    <label for="filter_permission_name" class="flex w-full px-3 py-1.5 border-b border-gray-200 select-none peer-checked:bg-blue-300" onclick="filterColumn('Permission Name', 'PermissionTable');"> 
-                                        Permission Name
-                                    </label>
-                                </li>
-                                <li>
-                                    <input id="filter_manage" type="checkbox" checked class="hidden peer">
-                                    <label for="filter_manage" class="flex w-full px-3 py-1.5 rounded-b-lg select-none peer-checked:bg-blue-300" onclick="filterColumn('Manage', 'PermissionTable');"> 
-                                        Manage
-                                    </label>
-                                </li>
-                            </ul>
-                        </div>
-                    </span>
-                </div>
+                
             </nav>
         </div>
 
