@@ -1,95 +1,143 @@
 @include('layouts.header')
-<div class="flex flex-col flex-grow">
-    <div class="px-12 py-5 max-sm:px-6">
+<div class="flex flex-col flex-grow min-h-screen bg-gray-50">
+    <div class="px-8 py-5 max-sm:px-4">
         <!-- Breadcrumbs -->
         <nav class="flex" aria-label="Breadcrumb">
-            <ol class="inline-flex items-center space-x-1 md:space-x-2 rtl:space-x-reverse">
+            <ol class="inline-flex items-center space-x-1 text-sm text-gray-600">
                 <li class="inline-flex items-center">
-                    <p class="inline-flex items-center text-sm font-medium text-gray-700">Main Panel</p>
+                    <a href="#" class="inline-flex items-center hover:text-gray-900">
+                        <svg class="w-3 h-3 me-2.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="m19.707 9.293-2-2-7-7a1 1 0 0 0-1.414 0l-7 7-2 2a1 1 0 0 0 1.414 1.414L2 10.414V18a2 2 0 0 0 2 2h3a1 1 0 0 0 1-1v-4a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v4a1 1 0 0 0 1 1h3a2 2 0 0 0 2-2v-7.586l.293.293a1 1 0 0 0 1.414-1.414Z"/>
+                        </svg>
+                        Main Panel
+                    </a>
                 </li>
                 <li aria-current="page">
-                    <p class="text-sm font-medium text-gray-700 ms-1 md:ms-2">Update Role</p>
+                    <div class="flex items-center">
+                        <svg class="w-3 h-3 mx-1 text-gray-400 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 9 4-4-4-4"/>
+                        </svg>
+                        <span class="font-medium text-gray-700 ms-1">Update Role</span>
+                    </div>
                 </li>
             </ol>
         </nav>
     </div>
 
-                <!-- Flash Messages -->
-    <div class="px-12 py-3">
+    <!-- Flash Messages -->
+    <div class="px-8 max-sm:px-4">
         @if (session('success'))
-            <div class="p-3 mb-4 text-green-800 bg-green-100 border border-green-400 rounded-lg">
-                <p>{{ session('success') }}</p>
+            <div class="flex items-center justify-between p-4 mb-4 text-sm text-green-800 border border-green-200 rounded-lg bg-green-50">
+                <div class="flex items-center">
+                    <svg class="w-4 h-4 me-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                        <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5Zm3.707 8.207-4 4a1 1 0 0 1-1.414 0l-2-2a1 1 0 0 1 1.414-1.414L9 10.586l3.293-3.293a1 1 0 0 1 1.414 1.414Z"/>
+                    </svg>
+                    <span>{{ session('success') }}</span>
+                </div>
+                <button type="button" class="text-green-500 hover:text-green-700" onclick="this.parentElement.style.display='none'">
+                    <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"/>
+                    </svg>
+                </button>
             </div>
         @elseif (session('error'))
-            <div class="p-3 mb-4 text-red-800 bg-red-100 border border-red-400 rounded-lg">
-                <p>{{ session('error') }}</p>
+            <div class="flex items-center justify-between p-4 mb-4 text-sm text-red-800 border border-red-200 rounded-lg bg-red-50">
+                <div class="flex items-center">
+                    <svg class="w-4 h-4 me-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                        <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM10 15a1 1 0 1 1 0-2 1 1 0 0 1 0 2Zm1-4a1 1 0 0 1-2 0V6a1 1 0 0 1 2 0v5Z"/>
+                    </svg>
+                    <span>{{ session('error') }}</span>
+                </div>
+                <button type="button" class="text-red-500 hover:text-red-700" onclick="this.parentElement.style.display='none'">
+                    <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"/>
+                    </svg>
+                </button>
             </div>
         @endif
     </div>
 
-    <div class="p-6">
-        <div class="flex flex-col flex-grow h-full p-6 border-2 rounded-lg">
-        <form method="POST" action="{{ route('users.updateRole', $user->id) }}">
+    <div class="px-8 py-4 max-sm:px-4">
+        <div class="w-full p-6 bg-white border border-gray-200 rounded-lg shadow-sm">
+            <h2 class="mb-6 text-xl font-semibold text-gray-800">Update Role Permissions</h2>
+            
+            <form method="POST" action="{{ route('users.updateRole', $user->id) }}">
                 @csrf
+                
                 <!-- Role Name -->
-                <div>
-                    <label for="role" class="block mb-2 text-sm font-medium text-black">Role</label>
-                    <input 
-                        id="role" 
-                        name="role" 
-                        type="text" 
-                        value="{{ $user->role_name }}" 
-                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5" 
-                        readonly 
-                        required
-                    >
-                </div><br/>
-
-                <!-- Permissions Checkboxes -->
-                <div class="grid gap-6 mb-6 md:grid-cols-5 max-md:grid-cols-3 max-sm:grid-cols-1">
-                    @foreach($permissions as $permission)
-                        <div class="flex items-center me-4">
-                            <input id="permission-{{ $permission->id }}" type="checkbox" name="permissions[]" value="{{ $permission->id }}" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 focus:ring-2" {{ $user->permissions->contains($permission) ? 'checked' : '' }}>
-                            <label for="permission-{{ $permission->id }}" class="text-sm font-medium text-gray-900 ms-2">{{ $permission->permissions_name }}</label>
+                <div class="mb-6">
+                    <label for="role" class="block mb-2 text-sm font-medium text-gray-700">Role Name</label>
+                    <div class="relative">
+                        <div class="absolute inset-y-0 start-0 flex items-center ps-3.5 pointer-events-none">
+                            <svg class="w-4 h-4 text-gray-500" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                                <path d="M10 0a10 10 0 1 0 10 10A10.011 10.011 0 0 0 10 0Zm0 5a3 3 0 1 1 0 6 3 3 0 0 1 0-6Zm0 13a8.949 8.949 0 0 1-4.951-1.488A3.987 3.987 0 0 1 9 13h2a3.987 3.987 0 0 1 3.951 3.512A8.949 8.949 0 0 1 10 18Z"/>
+                            </svg>
                         </div>
-                    @endforeach
+                        <input 
+                            id="role" 
+                            name="role" 
+                            type="text" 
+                            value="{{ $user->role_name }}" 
+                            class="bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full ps-10 p-2.5" 
+                            readonly 
+                            required
+                        >
+                    </div>
                 </div>
 
-                <!-- Buttons -->
-                <div class="flex items-center justify-center w-full gap-4 max-sm:flex-col max-sm:p-0">
-                    <button type="submit" class="py-3 px-6 bg-[{{ $settings[7]->value}}] text-white rounded-lg">Update</button>
-                    <button type="reset" class="px-6 py-3 text-white bg-black rounded-lg">Reset</button>
-                    <button type="button" class="px-6 py-3 text-white bg-red-600 rounded-lg max-sm:py-1 max-sm:px-3 max-sm:w-full"
-                        onclick="window.location.href='/users/rolesList'">Cancel</button>
+                <!-- Permissions Section -->
+                <div class="mb-8">
+                    <h3 class="mb-4 text-lg font-medium text-gray-800">Permissions</h3>
+                    <div class="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+                        @foreach($permissions as $permission)
+                            <div class="flex items-center p-3 rounded-lg bg-gray-50 hover:bg-gray-100">
+                                <input 
+                                    id="permission-{{ $permission->id }}" 
+                                    type="checkbox" 
+                                    name="permissions[]" 
+                                    value="{{ $permission->id }}" 
+                                    class="w-4 h-4 text-blue-600 bg-white border-gray-300 rounded focus:ring-blue-500 focus:ring-2" 
+                                    {{ $user->permissions->contains($permission) ? 'checked' : '' }}
+                                >
+                                <label for="permission-{{ $permission->id }}" class="text-sm font-medium text-gray-700 ms-2">
+                                    {{ $permission->permissions_name }}
+                                </label>
+                            </div>
+                        @endforeach
+                    </div>
+                </div>
+
+                <!-- Action Buttons -->
+                <div class="flex items-center justify-end gap-3 pt-4 border-t border-gray-200">
+                    <button type="button" onclick="window.location.href='/users/rolesList'" class="px-5 py-2.5 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-gray-200">
+                        Cancel
+                    </button>
+                    <button type="reset" class="px-5 py-2.5 text-sm font-medium text-gray-900 bg-gray-100 rounded-lg hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-gray-100">
+                        Reset
+                    </button>
+                    <button type="submit" class="px-5 py-2.5 text-sm font-medium text-white bg-[{{ $settings[7]->value}}] rounded-lg hover:bg-opacity-90 focus:outline-none focus:ring-2 focus:ring-blue-300">
+                        Update Permissions
+                    </button>
                 </div>
             </form>
-
         </div>
     </div>
-
-    @include('layouts.footer')
-
 </div>
 
-
+@include('layouts.footer')
 
 <script>
-    window.onload = function() {
-        // Check if success or error messages exist
-        const successMessage = document.querySelector('.bg-green-100');
-        const errorMessage = document.querySelector('.bg-red-100');
-
-        // Function to hide the message after 4 seconds
-        function hideMessage(messageElement) {
-            if (messageElement) {
-                setTimeout(function() {
-                    messageElement.style.display = 'none';
-                }, 4000); // 4000 milliseconds = 4 seconds
-            }
-        }
-
-        // Hide the success or error message after 4 seconds
-        hideMessage(successMessage);
-        hideMessage(errorMessage);
-    }
+    // Auto-dismiss flash messages after 4 seconds
+    document.addEventListener('DOMContentLoaded', function() {
+        const flashMessages = document.querySelectorAll('.bg-green-50, .bg-red-50');
+        
+        flashMessages.forEach(message => {
+            setTimeout(() => {
+                message.style.opacity = '0';
+                setTimeout(() => {
+                    message.style.display = 'none';
+                }, 300);
+            }, 4000);
+        });
+    });
 </script>
