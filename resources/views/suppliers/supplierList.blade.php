@@ -1,211 +1,187 @@
 @include('layouts.header')
-<div class="h-[90vh] max-lg:h-[92vh] flex flex-col grow">
-        <!--breadcrumbs-->
-        <div class="px-12 py-5 max-sm:px-6">
-    <nav class="flex" aria-label="Breadcrumb">
-        <ol class="inline-flex items-center space-x-1 md:space-x-2 rtl:space-x-reverse">
-            <li class="inline-flex items-center">
-                <p class="inline-flex items-center text-sm font-medium text-gray-700">
-                    <svg class="w-3 h-3 me-2.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
-                        <path d="m19.707 9.293-2-2-7-7a1 1 0 0 0-1.414 0l-7 7-2 2a1 1 0 0 0 1.414 1.414L2 10.414V18a2 2 0 0 0 2 2h3a1 1 0 0 0 1-1v-4a1 1 0 0 1 1-1h2a1 1 0 1 1 1 1v4a1 1 0 0 0 1 1h3a2 2 0 0 0 2-2v-7.586l.293.293a1 1 0 0 0 1.414-1.414Z" />
-                    </svg>
-                    Main Panel
-                </p>
-            </li>
-            <li>
-                <div class="flex items-center">
-                    <svg class="w-3 h-3 mx-1 text-gray-400 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
-                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 9 4-4-4-4" />
-                    </svg>
-                    <p class="text-sm font-medium text-gray-700 ms-1 md:ms-2">Suppliers</p>
-                </div>
-            </li>
-            <li aria-current="page">
-                <div class="flex items-center">
-                    <svg class="w-3 h-3 mx-1 text-gray-400 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
-                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 9 4-4-4-4" />
-                    </svg>
-                    <p class="text-sm font-medium text-gray-700 ms-1 md:ms-2">Suppliers List</p>
-                </div>
-            </li>
-        </ol>
-        <div class="flex items-center justify-end w-full gap-3 px-12 py-5 max-sm:px-6 max-md:flex-col">
-            <span class="flex flex-wrap gap-2 w-fit max-md:w-full max-md:justify-center">
-                <button id="copyButton" class="px-4 py-2 text-white bg-black rounded-lg max-sm:px-2 max-sm:py-1">Copy</button>
-                <button class="px-4 py-2 text-white bg-black rounded-lg max-sm:px-2 max-sm:py-1" onclick="exportTableToCSV('suppliers.csv')">CSV</button>
-                <button class="px-4 py-2 text-white bg-black rounded-lg max-sm:px-2 max-sm:py-1" onclick="exportTableToExcel('suppliers.xlsx')">Excel</button>
-                <button class="px-4 py-2 text-white bg-black rounded-lg max-sm:px-2 max-sm:py-1" onclick="exportTableToPDF()">PDF</button>
-                <button data-popover-target="popover-click" data-popover-trigger="click" type="button" class="px-4 py-2 text-white bg-black rounded-lg">Column Visibility</button>
-                <div data-popover id="popover-click" role="tooltip" class="absolute z-10 invisible inline-block text-sm text-gray-500 transition-opacity duration-300 bg-white border border-gray-200 rounded-lg shadow-sm opacity-0 w-fit">
-                    <ul class="flex flex-col w-full text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg">
-                        <li>
-                            <input id="filter_supplier_code" type="checkbox" checked class="hidden peer">
-                            <label for="filter_supplier_code" class="flex w-full px-4 py-2 border-b border-gray-200 select-none peer-checked:bg-blue-300" onclick="filterColumn('Supplier Code', 'suppliersTable');"> Supplier Code </label>
+<div class="flex flex-col min-h-[90vh] max-lg:min-h-[92vh] bg-gray-50">
+    <!-- Header Section -->
+    <div class="px-8 py-4 max-sm:px-4">
+        <div class="flex flex-col justify-between space-y-4 md:flex-row md:items-center md:space-y-0">
+            <!-- Breadcrumbs -->
+            <div>
+                <nav class="flex" aria-label="Breadcrumb">
+                    <ol class="inline-flex items-center space-x-1 text-sm text-gray-600">
+                        <li class="inline-flex items-center">
+                            <a href="{{ asset('/dashboard')}}" class="inline-flex items-center hover:text-gray-900">
+                                <svg class="w-4 h-4 mr-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                                    <path d="m19.707 9.293-2-2-7-7a1 1 0 0 0-1.414 0l-7 7-2 2a1 1 0 0 0 1.414 1.414L2 10.414V18a2 2 0 0 0 2 2h3a1 1 0 0 0 1-1v-4a1 1 0 1 1 1-1h2a1 1 0 1 1 1 1v4a1 1 0 0 0 1 1h3a2 2 0 0 0 2-2v-7.586l.293.293a1 1 0 0 0 1.414-1.414Z"/>
+                                </svg>
+                                Main Panel
+                            </a>
                         </li>
                         <li>
-                            <input id="filter_supplier_name" type="checkbox" checked class="hidden peer">
-                            <label for="filter_supplier_name" class="flex w-full px-4 py-2 border-b border-gray-200 select-none peer-checked:bg-blue-300" onclick="filterColumn('Supplier Name', 'suppliersTable');"> Supplier Name </label>
+                            <div class="flex items-center">
+                                <svg class="w-3 h-3 mx-1 text-gray-400 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
+                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 9 4-4-4-4"/>
+                                </svg>
+                                <a href="{{ asset('/suppliers/suppliers')}}" class="hover:text-gray-900">Suppliers</a>
+                            </div>
                         </li>
-                        <li>
-                            <input id="filter_mobile_number" type="checkbox" checked class="hidden peer">
-                            <label for="filter_mobile_number" class="flex w-full px-4 py-2 border-b border-gray-200 select-none peer-checked:bg-blue-300" onclick="filterColumn('Mobile Number', 'suppliersTable');"> Mobile Number </label>
+                        <li aria-current="page">
+                            <div class="flex items-center">
+                                <svg class="w-3 h-3 mx-1 text-gray-400 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
+                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 9 4-4-4-4"/>
+                                </svg>
+                                <span class="font-medium text-gray-700">Suppliers List</span>
+                            </div>
                         </li>
-                        <li>
-                            <input id="filter_email_address" type="checkbox" checked class="hidden peer">
-                            <label for="filter_email_address" class="flex w-full px-4 py-2 border-b border-gray-200 select-none peer-checked:bg-blue-300" onclick="filterColumn('Email Address', 'suppliersTable');"> Email Address </label>
-                        </li>
-                        <li>
-                            <input id="filter_address" type="checkbox" checked class="hidden peer">
-                            <label for="filter_address" class="flex w-full px-4 py-2 border-b border-gray-200 select-none peer-checked:bg-blue-300" onclick="filterColumn('Address', 'suppliersTable');"> Address </label>
-                        </li>
-                        <li>
-                            <input id="filter_manage" type="checkbox" checked class="hidden peer">
-                            <label for="filter_manage" class="flex w-full px-4 py-2 rounded-b-lg select-none peer-checked:bg-blue-300" onclick="filterColumn('Manage', 'suppliersTable');"> Manage </label>
-                        </li>
-                    </ul>
-                </div>
-            </span>
-        </div>
-    </nav>
-</div>
-
-
-        <!--search controls-->
-        <div class="flex items-center justify-between w-full gap-3 px-12 py-5 max-sm:px-6 max-md:flex-col">
-            <!-- Search -->
-            <div class="flex items-center w-1/2 gap-3 max-md:w-full">
-                <label for="search_cat">Search</label>
-                <input type="text" id="search_cat"
-                    class="block w-full p-2 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500"
-                    placeholder="Enter supplier name" required />
-                <button onclick="searchItems('search_cat', 'suppliersTable', 2);" 
-                    class="py-2 px-4 bg-[{{ $settings[7]->value}}] text-white rounded-lg">Search</button>
+                    </ol>
+                </nav>
+                <h1 class="mt-2 text-2xl font-bold text-gray-800">Supplier Management</h1>
             </div>
-            <!-- Show Entries -->
-            <span class="flex items-center gap-3 w-fit max-md:w-full">
-                Show
-                <input type="number" id="col_num"
-                    class="block w-full p-2 text-xs text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500"
-                    placeholder="30" min="1" oninput="showEntries()" required />
-                Entries
-            </span>
-        </div>
 
-        <!--btn controls-->
-       
-        <!--table-->
-        <div class="flex flex-col flex-grow px-12 py-5 overflow-y-auto bg-white max-sm:px-6 max-lg:min-h-full">
-            <span></span>
-            <!--table from flowbite-->
-            <div class="relative overflow-x-auto">
-            <table id="suppliersTable" class="w-full text-sm text-left text-gray-500 rtl:text-right">
-                    <thead class="text-xs text-white uppercase bg-[{{ $settings[7]->value}}]">
+            <!-- Add Supplier Button -->
+            @if(has_permission(46))
+            <button onclick="window.location.href='/suppliers/addSupplier'" class="px-4 py-2 text-sm font-medium text-white bg-[{{ $settings[7]->value}}] rounded-lg hover:bg-opacity-90 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
+                <svg class="w-4 h-4 mr-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 18">
+                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 1v16M1 9h16"/>
+                </svg>
+                Add New Supplier
+            </button>
+            @endif
+        </div>
+    </div>
+
+    <!-- Search and Filter Controls -->
+    <div class="px-8 py-3 max-sm:px-4">
+        <div class="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
+            <!-- Search Input -->
+            <div class="relative w-full md:w-1/2">
+                <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                    <svg class="w-4 h-4 text-gray-500" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"/>
+                    </svg>
+                </div>
+                <input type="text" id="search_cat" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5" placeholder="Search suppliers..." onkeyup="searchItems('search_cat', 'suppliersTable', 2)">
+            </div>
+            
+            <!-- Entries Selector -->
+            <div class="flex items-center space-x-2 text-sm text-gray-600">
+                <span>Show</span>
+                <input type="number" id="col_num" class="w-20 p-2 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500" value="30" min="1" oninput="showEntries()">
+                <span>entries</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Table Section -->
+    <div class="flex flex-col flex-grow px-8 py-3 max-sm:px-4">
+        <div class="overflow-hidden bg-white border border-gray-200 rounded-lg shadow-sm">
+            <div class="overflow-x-auto">
+                <table id="suppliersTable" class="min-w-full divide-y divide-gray-200">
+                    <thead class="bg-[{{ $settings[7]->value}}]">
                         <tr>
-                            <th scope="col" class="px-4 py-2 rounded-tl-lg">#</th>
-                            <th scope="col" class="px-4 py-2">Supplier Code</th>
-                            <th scope="col" class="px-4 py-2">Supplier Name</th>
-                            <th scope="col" class="px-4 py-2">Mobile Number</th>
-                            <th scope="col" class="px-4 py-2">Email Address</th>
-                            <th scope="col" class="px-4 py-2">Address</th>
-                            <th scope="col" class="hidden px-4 py-2">User ID</th>
-                            <th scope="col" class="hidden px-4 py-2">City ID</th>
-                            <th scope="col" class="hidden px-4 py-2">Status ID</th>
-                            <th scope="col" class="hidden px-4 py-2">City Name</th>
-                            <th scope="col" class="px-4 py-2 rounded-tr-lg">Manage</th>
+                            <th scope="col" class="px-6 py-3 text-xs font-medium tracking-wider text-left text-white uppercase rounded-tl-lg">#</th>
+                            <th scope="col" class="px-6 py-3 text-xs font-medium tracking-wider text-left text-white uppercase">Supplier Code</th>
+                            <th scope="col" class="px-6 py-3 text-xs font-medium tracking-wider text-left text-white uppercase">Supplier Name</th>
+                            <th scope="col" class="px-6 py-3 text-xs font-medium tracking-wider text-left text-white uppercase">Mobile</th>
+                            <th scope="col" class="px-6 py-3 text-xs font-medium tracking-wider text-left text-white uppercase">Email</th>
+                            <th scope="col" class="px-6 py-3 text-xs font-medium tracking-wider text-left text-white uppercase">Address</th>
+                            <th scope="col" class="px-6 py-3 text-xs font-medium tracking-wider text-left text-white uppercase">Status</th>
+                            <th scope="col" class="px-6 py-3 text-xs font-medium tracking-wider text-left text-white uppercase rounded-tr-lg">Actions</th>
                         </tr>
                     </thead>
-                    <tbody>
+                    <tbody class="bg-white divide-y divide-gray-200">
                         @forelse ($suppliers as $key => $supplier)
-                            <tr class="text-black bg-white border border-gray-200">
-                                <td scope="row" class="px-4 py-2 font-medium whitespace-nowrap">{{ $key + 1 }}</td>
-                                <td class="px-4 py-2">{{ $supplier->id }}</td>
-                                <td class="px-4 py-2">{{ $supplier->supplier_name }}</td>
-                                <td class="px-4 py-2">{{ $supplier->contact_number }}</td>
-                                <td class="px-4 py-2">{{ $supplier->email }}</td>
-                                <td class="px-4 py-2">{{ $supplier->address }}</td>
-                                <td class="hidden px-4 py-2">{{ $supplier->user_id }}</td>
-                                <td class="hidden px-4 py-2">{{ $supplier->city_id }}</td>
-                                <td class="hidden px-4 py-2">{{ $supplier->status_id }}</td>
-                                <td class="hidden px-4 py-2">{{ $supplier->city_name }}</td>
-                                <td class="px-4 py-2">
+                        <tr class="transition-all hover:bg-gray-50">
+                            <td class="px-6 py-4 text-sm font-medium text-gray-900 whitespace-nowrap">{{ $key + 1 }}</td>
+                            <td class="px-6 py-4 text-sm text-gray-900 whitespace-nowrap">{{ $supplier->id }}</td>
+                            <td class="px-6 py-4 text-sm text-gray-900">
+                                <div class="flex items-center">
+                                    <svg class="w-4 h-4 mr-2 text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                                        <path d="M10 0a10 10 0 1 0 10 10A10.011 10.011 0 0 0 10 0Zm0 5a3 3 0 1 1 0 6 3 3 0 0 1 0-6Zm0 13a8.949 8.949 0 0 1-4.951-1.488A3.987 3.987 0 0 1 9 13h2a3.987 3.987 0 0 1 3.951 3.512A8.949 8.949 0 0 1 10 18Z"/>
+                                    </svg>
+                                    {{ $supplier->supplier_name }}
+                                </div>
+                            </td>
+                            <td class="px-6 py-4 text-sm text-gray-900 whitespace-nowrap">
+                                <div class="flex items-center">
+                                    <svg class="w-4 h-4 mr-2 text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 19 18">
+                                        <path d="M18 13.446a3.02 3.02 0 0 0-.946-1.985l-1.4-1.4a3.054 3.054 0 0 0-4.218 0l-.7.7a.983.983 0 0 1-1.39 0l-2.1-2.1a.983.983 0 0 1 0-1.389l.7-.7a2.98 2.98 0 0 0 0-4.217l-1.4-1.4a2.824 2.824 0 0 0-4.218 0c-3.619 3.619-3 8.229 1.752 12.979C6.785 16.639 9.45 18 11.912 18a7.175 7.175 0 0 0 5.139-2.325A2.9 2.9 0 0 0 18 13.446Z"/>
+                                    </svg>
+                                    {{ $supplier->contact_number }}
+                                </div>
+                            </td>
+                            <td class="px-6 py-4 text-sm text-gray-900 whitespace-nowrap">
+                                {{ $supplier->email }}
+                            </td>
+                            <td class="px-6 py-4 text-sm text-gray-900">{{ $supplier->address }}</td>
+                            <td class="px-6 py-4 text-sm text-gray-900">{{ $supplier->status->status_name }}</td>
+
+                            <td class="px-6 py-4 text-sm font-medium text-gray-900 whitespace-nowrap">
+                                <div class="flex space-x-2">
                                     @if(has_permission(47))
-                                    <button class="p-2 border border-gray-300 rounded-md" onclick="editSupplier({{ $supplier->id }})">Edit</button>
+                                    <button 
+                                        onclick="editSupplier({{ $supplier->id }})" 
+                                        class="px-3 py-1 text-sm text-white bg-[{{ $settings[7]->value }}] rounded-md hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-offset-2"
+                                    >
+                                        Edit
+                                    </button>
+
                                     @endif
                                     @if(has_permission(59))
                                     <button 
                                         id="status-button-{{ $supplier->id }}"
-                                        class="p-2 text-white {{ $supplier->status_id == 1 ? 'bg-green-600' : 'bg-red-600' }} border border-gray-300 rounded-md"
+                                        class="px-3 py-1 text-sm text-white {{ $supplier->status_id == 1 ? 'bg-green-600 hover:bg-green-700' : 'bg-red-600 hover:bg-red-700' }} rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 {{ $supplier->status_id == 1 ? 'focus:ring-green-500' : 'focus:ring-red-500' }}"
                                         onclick="toggleUserStatus({{ $supplier->id }})">
                                         {{ $supplier->status_id == 1 ? 'Deactivate' : 'Activate' }}
                                     </button>
                                     @endif
                                     @if(has_permission(48))
-                                    <button class="hidden p-2 text-white bg-red-600 border border-gray-300 rounded-md" onclick="deleteSupplier({{ $supplier->id }})">Delete</button>
+                                    <button onclick="deleteSupplier({{ $supplier->id }})" class="px-3 py-1 text-sm text-white bg-red-600 rounded-md hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2">
+                                        Delete
+                                    </button>
                                     @endif
-                                </td>
-                            </tr>
+                                </div>
+                            </td>
+                        </tr>
                         @empty
-                            <tr>
-                                <td colspan="7" class="px-4 py-2 text-center">No suppliers found.</td>
-                            </tr>
+                        <tr>
+                            <td colspan="7" class="px-6 py-4 text-sm text-center text-gray-500">No suppliers found</td>
+                        </tr>
                         @endforelse
                     </tbody>
                 </table>
-
-
             </div>
         </div>
-        @include('layouts.footer')
-
     </div>
-</body>
-<script src="https://cdn.jsdelivr.net/npm/flowbite@2.5.2/dist/flowbite.min.js"></script>
-<script src="../../../scripts/common.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/dompurify/2.3.4/purify.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.28/jspdf.plugin.autotable.min.js"></script>
-
-
-</html>
+</div>
+@include('layouts.footer')
 
 <script>
-document.getElementById('search_cat').addEventListener('input', function () {
-    const filter = this.value.toLowerCase();
-    const rows = document.querySelectorAll('#suppliersTable tbody tr');
+// Function to filter table rows based on the search term
+function searchItems(searchInputId, tableId, columnIndex) {
+    const searchInput = document.getElementById(searchInputId);
+    const filter = searchInput.value.toLowerCase();
+    const table = document.getElementById(tableId);
+    const rows = table.querySelectorAll('tbody tr');
 
     rows.forEach(row => {
-        const supplierName = row.querySelector('td:nth-child(3)').textContent.toLowerCase();
-        if (supplierName.includes(filter)) {
-            row.style.display = ''; // Show row
-        } else {
-            row.style.display = 'none'; // Hide row
-        }
-    });
-});
+        const cells = row.querySelectorAll('td');
+        const cell = cells[columnIndex]; // Column to search (0-indexed)
 
-
-// Function to show a specific number of rows in the suppliers table
-function showEntries() {
-    const rows = document.querySelectorAll('#suppliersTable tbody tr'); // Target the suppliersTable
-    let entries = document.getElementById('col_num').value;
-
-    // Set default value of 30 if input is empty or invalid
-    if (!entries || entries <= 0) {
-        entries = 30;
-    }
-
-    rows.forEach((row, index) => {
-        if (index < entries) {
-            row.style.display = ''; // Show row
-        } else {
-            row.style.display = 'none'; // Hide row
+        if (cell) {
+            const cellText = cell.textContent || cell.innerText;
+            row.style.display = cellText.toLowerCase().includes(filter) ? "" : "none";
         }
     });
 }
 
-
+// Function to show a specific number of rows in the table
+function showEntries() {
+    const rows = document.querySelectorAll('#suppliersTable tbody tr');
+    let entries = document.getElementById('col_num').value || 30;
+    
+    rows.forEach((row, index) => {
+        row.style.display = index < entries ? '' : 'none';
+    });
+}
 
 function editSupplier(supplierId) {
     window.location.href = `/suppliers/updateSupplier/${supplierId}`;
@@ -224,177 +200,17 @@ function deleteSupplier(supplierId) {
         .then(data => {
             if (data.success) {
                 alert(data.message);
-                location.reload(); // Reload page to see changes
+                location.reload();
             } else {
                 alert(data.message);
             }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            alert('An error occurred while deleting the supplier.');
         });
     }
 }
-
-
-document.getElementById('copyButton').addEventListener('click', function () {
-    // Select the table
-    const table = document.getElementById('suppliersTable');
-    let data = '';
-
-    // Loop through the rows of the table
-    for (let i = 0; i < table.rows.length; i++) {
-        let row = table.rows[i];
-        let rowData = [];
-        
-        // Loop through each cell in the row
-        for (let j = 0; j < row.cells.length; j++) {
-            // Skip the "Manage" column (assumed to be the last column)
-            if (j == row.cells.length - 1) continue;
-
-            // Add cell text, ensuring it is well-trimmed and cleaned
-            rowData.push(row.cells[j].innerText.trim());
-        }
-        
-        // Add formatted row data to the data string
-        data += rowData.join('\t') + '\n'; // Use tab as a separator
-    }
-
-    // Copy the data to the clipboard
-    navigator.clipboard.writeText(data).then(() => {
-        alert('Table data copied to clipboard in a structured format!');
-    }).catch(err => {
-        console.error('Failed to copy: ', err);
-        alert('Failed to copy table data.');
-    });
-});
-
-
-function exportTableToCSV(filename) {
-    const rows = document.querySelectorAll("#suppliersTable tr");
-    let csvContent = "";
-
-    rows.forEach(row => {
-        const cols = Array.from(row.querySelectorAll("th, td"));
-        const rowContent = cols
-            .slice(0, -1) // Exclude the last column
-            .map(col => col.textContent.trim())
-            .join(",");
-        csvContent += rowContent + "\n";
-    });
-
-    const blob = new Blob([csvContent], { type: "text/csv" });
-    const url = window.URL.createObjectURL(blob);
-    const link = document.createElement("a");
-    link.href = url;
-    link.download = filename;
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
-}
-
-
-
-function exportTableToExcel(filename) {
-    const table = document.getElementById("suppliersTable");
-    const clonedTable = table.cloneNode(true);
-
-    // Remove "Manage" column from the cloned table
-    const rows = clonedTable.rows;
-    for (let i = 0; i < rows.length; i++) {
-        rows[i].deleteCell(-1); // Delete the last cell in each row
-    }
-
-    const worksheet = XLSX.utils.table_to_sheet(clonedTable);
-    const workbook = XLSX.utils.book_new();
-    XLSX.utils.book_append_sheet(workbook, worksheet, "Suppliers");
-    XLSX.writeFile(workbook, filename);
-}
-
-
-
-function exportTableToPDF() {
-    const { jsPDF } = window.jspdf;
-    const doc = new jsPDF();
-
-    // Get the table data
-    const table = document.getElementById('suppliersTable');
-
-    // Extract table data
-    const rows = [];
-    const tableRows = table.querySelectorAll('tr');
-
-    // Determine the number of columns to exclude (last 4 columns)
-    let totalColumns = tableRows[0].querySelectorAll('th, td').length; // Total columns in the table
-    let columnsToExclude = 5; // Number of columns to remove
-
-    // Extract rows, excluding the last 4 columns
-    tableRows.forEach((row, rowIndex) => {
-        const cols = row.querySelectorAll('td, th');
-        const rowData = [];
-
-        cols.forEach((col, index) => {
-            if (index < totalColumns - columnsToExclude) { // Include columns except the last 4
-                rowData.push(col.innerText);
-            }
-        });
-
-        // Skip empty rows
-        if (rowData.length > 0) {
-            rows.push(rowData);
-        }
-    });
-
-    // Add table to PDF
-    doc.autoTable({
-        head: [rows[0]], // First row as headers
-        body: rows.slice(1), // Remaining rows as table body
-    });
-
-    // Save PDF
-    doc.save('supplier.pdf');
-}
-
-
-
-function filterColumn(columnName, tableId) {
-    const checkbox = document.getElementById(`filter_${columnName.toLowerCase().replace(/ /g, '_')}`);
-    
-    if (!checkbox) {
-        console.error(`Checkbox with ID filter_${columnName.toLowerCase().replace(/ /g, '_')} not found.`);
-        return; // Exit if checkbox is not found
-    }
-
-    const table = document.getElementById(tableId);
-    const ths = table.querySelectorAll('th');
-    const tds = table.querySelectorAll('tbody tr');
-
-    let columnIndex;
-    
-    // Find the index of the column based on its name
-    ths.forEach((th, index) => {
-        if (th.textContent.trim() == columnName) {
-            columnIndex = index;
-        }
-    });
-
-    if (columnIndex == undefined) {
-        console.error(`Column ${columnName} not found in the table header.`);
-        return; // Exit if column is not found
-    }
-
-    // Toggle visibility based on checkbox state
-    if (checkbox.checked) {
-        ths[columnIndex].style.display = '';
-        tds.forEach(td => {
-            td.cells[columnIndex].style.display = '';
-        });
-    } else {
-        ths[columnIndex].style.display = 'none';
-        tds.forEach(td => {
-            td.cells[columnIndex].style.display = 'none';
-        });
-    }
-}
-
-
-
 
 function toggleUserStatus(supplierId) {
     const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
@@ -416,26 +232,26 @@ function toggleUserStatus(supplierId) {
         return response.json();
     })
     .then(data => {
-        const button = document.getElementById(`status-button-${supplierId}`); // Use supplierId instead of userId
+        const button = document.getElementById(`status-button-${supplierId}`);
         if (data.status_id == 1) {
             button.textContent = 'Deactivate';
-            button.classList.remove('bg-red-600');
-            button.classList.add('bg-green-600');
+            button.classList.remove('bg-red-600', 'hover:bg-red-700', 'focus:ring-red-500');
+            button.classList.add('bg-green-600', 'hover:bg-green-700', 'focus:ring-green-500');
         } else {
             button.textContent = 'Activate';
-            button.classList.remove('bg-green-600');
-            button.classList.add('bg-red-600');
+            button.classList.remove('bg-green-600', 'hover:bg-green-700', 'focus:ring-green-500');
+            button.classList.add('bg-red-600', 'hover:bg-red-700', 'focus:ring-red-500');
         }
         
-        // Redirect to the previous page after updating status
-        window.location.reload(); // Or specify a different URL if needed
+        // Optionally show a success message
+        alert('Supplier status updated successfully');
     })
     .catch(error => {
         console.error('Error:', error);
-        alert('Failed to toggle user status: ' + error.message);
+        alert('Failed to toggle supplier status: ' + error.message);
     });
 }
 
-
-
+// Initialize with default entries
+document.addEventListener('DOMContentLoaded', showEntries);
 </script>

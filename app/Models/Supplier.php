@@ -23,4 +23,9 @@ class Supplier extends Model
 {
     return $this->belongsTo(Supplier::class);
 }
+
+    public function status()
+    {
+        return $this->belongsTo(Status::class, 'status_id');
+    }
 }
