@@ -261,12 +261,19 @@
         <!--main content-->
         <div class="flex h-full gap-2 px-3 py-3 pb-5 overflow-y-auto max-sm:px-6 max-xl:flex-col">
             <!--blue div + textfields + table-->
-            <div class="flex flex-col w-2/3 bg-white border border-gray-200 shadow-lg rounded-xl max-xl:w-full">
+            <div class="flex flex-col w-2/3 border border-gray-100 shadow-sm bg-gray-50 rounded-2xl max-xl:w-full backdrop-blur-sm bg-opacity-70">
                 <!-- Header Section -->
-                <div class="flex flex-col items-start justify-between gap-3 p-4 bg-white border-b border-gray-200 rounded-xl sm:flex-row sm:items-center">
-                    <!-- Title -->
-                    <h1 class="text-lg font-bold text-gray-800 sm:text-xl">Sales Terminal</h1>
-                    <div class="w-1/3 max-sm:w-full">
+                <div class="flex flex-col items-start justify-between gap-3 p-5 border-b border-gray-100 bg-white/50 rounded-t-2xl sm:flex-row sm:items-center">
+                    <!-- Title with futuristic accent -->
+                    <div class="flex items-center">
+                        <h1 class="text-xl font-bold text-gray-900 sm:text-2xl font-[Inter]">Sales Terminal</h1>
+                        <div class="w-2 h-2 ml-2 bg-blue-500 rounded-full animate-pulse"></div>
+                    </div>
+                    
+                    <!-- Right controls -->
+                    <div class="flex flex-col items-start w-full gap-3 sm:flex-row sm:items-center sm:space-x-3 sm:gap-0 sm:w-auto">
+                        <!-- Customer Select - Futuristic floating style -->
+                        <div class="w-full sm:w-48">
                         <select id="customer" name="customer"
                                 class="w-full p-2.5 text-sm text-gray-700 bg-gray-50 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all">
                             <option value="" disabled selected>Select Customer</option>
@@ -274,146 +281,138 @@
                                 <option value="{{ $customer->id }}">{{ $customer->customer_name }}</option>
                             @endforeach
                         </select>
-                    </div>
+                            <div class="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
+                                <svg class="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                                </svg>
+                            </div>
+                        </div>
 
-                    <!-- Right controls -->
-                    <div class="flex flex-col items-start w-full gap-2 sm:flex-row sm:items-center sm:space-x-3 sm:gap-0 sm:w-auto">
-                        <!-- View Hold List Button -->
+                        <!-- View Hold List Button - Glassmorphism style -->
                         <button id="view-hold-list"
                                 data-modal-target="default-modal"
                                 data-modal-toggle="default-modal"
-                                class="relative w-full px-4 py-2 text-sm transition-colors bg-gray-100 rounded-lg hover:bg-gray-200 sm:w-auto">
-                            View Hold List
+                                class="relative w-full px-4 py-2.5 text-sm transition-all bg-white/80 border border-gray-200 rounded-xl hover:bg-white shadow-sm backdrop-blur-sm sm:w-auto">
+                            <span class="flex items-center">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 8h14M5 8a2 2 0 110-4h14a2 2 0 110 4M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8m-9 4h4"/>
+                                </svg>
+                                Hold List
+                            </span>
                             <span id="hold-list-count"
-                                class="absolute flex items-center justify-center w-5 h-5 text-xs text-white bg-red-500 rounded-full -top-1 -right-1">
+                                class="absolute flex items-center justify-center w-5 h-5 text-xs text-white bg-red-500 rounded-full shadow-sm -top-2 -right-2">
                                 0
                             </span>
                         </button>
 
-                        <!-- Toggle Buttons -->
-                        <div class="flex w-full p-1 bg-gray-100 rounded-lg sm:w-auto">
-                            <button id="retailButton" class="w-1/2 px-4 py-2 font-medium text-gray-800 bg-white rounded-md sm:w-auto hover:bg-gray-200">
+                        <!-- Toggle Buttons - Neumorphic style -->
+                        <div class="flex w-full p-1 bg-gray-100/50 rounded-xl sm:w-auto backdrop-blur-sm">
+                            <button id="retailButton" class="w-1/2 px-4 py-2 font-medium text-gray-600 transition-all bg-white rounded-lg shadow-sm sm:w-auto hover:bg-gray-50">
                                 Retail
                             </button>
-                            <button id="wholesaleButton" class="w-1/2 px-4 py-2 text-gray-600 rounded-md sm:w-auto hover:bg-gray-200">
+                            <button id="wholesaleButton" class="w-1/2 px-4 py-2 text-gray-600 transition-all rounded-lg sm:w-auto hover:bg-gray-50">
                                 Wholesale
                             </button>
                         </div>
                     </div>
                 </div>
 
-
-                <!-- Input Fields Section -->
-                <div class="flex gap-1 p-1 max-sm:flex-col max-sm:gap-3">
-                    <!-- Customer Select -->
-
-                    <!-- Add Customer Button -->
-                    <button type="button" data-modal-target="customer-modal" data-modal-toggle="customer-modal"
-                            class="hidden flex items-center justify-center px-4 py-2.5 text-sm font-medium text-white rounded-lg transition-all hover:opacity-90"
-                            style="background-color: {{ $settings[7]->value }}">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 16 16">
-                            <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0"/>
-                            <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8m8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1"/>
-                        </svg>
-                        Add Customer
-                    </button>
-                    <div class="flex-1 hidden max-sm:w-full"> 
-                        <input type="text" id="itemCodeInput" class="w-full p-2.5 text-sm text-gray-700 bg-gray-50 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all" placeholder="Scan barcode or enter item code"> <p id="itemError" class="hidden mt-1 text-xs text-red-500">
-                            
-                        </p> </div>
-
-                </div>
-
-                <!-- Items Table -->
-                <div class="relative h-full max-h-[90vh] overflow-auto border-b border-gray-200">
-                    <table id="itemsTable" class="w-full text-sm text-left text-gray-500">
-                        <thead class="sticky top-0 text-xs text-white uppercase bg-[{{ $settings[7]->value }}]">
-                            <tr>
-                                <th scope="col" class="px-6 py-3 rounded-tl-lg">Item Name</th>
-                                <th scope="col" class="px-6 py-3">Qty</th>
-                                <th scope="col" class="px-6 py-3">Price</th>
-                                <th scope="col" class="px-6 py-3">Discount</th>
-                                <th scope="col" class="px-6 py-3">Subtotal</th>
-                                <th scope="col" class="px-6 py-3 rounded-tr-lg">Action</th>
+                <!-- Items Table - Futuristic card style -->
+                <div class="relative h-full max-h-[90vh] overflow-auto">
+                    <table id="itemsTable" class="w-full text-sm text-left text-gray-700">
+                        <thead class="sticky top-0 text-xs uppercase border-b border-gray-100 bg-white/80 backdrop-blur-sm">
+                            <tr class="[&>th]:font-semibold [&>th]:text-gray-600 [&>th]:py-4 [&>th]:px-6">
+                                <th scope="col" class="rounded-tl-2xl">Item Name</th>
+                                <th scope="col">Qty</th>
+                                <th scope="col">Price</th>
+                                <th scope="col">Discount</th>
+                                <th scope="col">Subtotal</th>
+                                <th scope="col" class="rounded-tr-2xl">Action</th>
                             </tr>
                         </thead>
-                        <tbody id="stored-items" class="divide-y divide-gray-200">
+                        <tbody id="stored-items" class="divide-y divide-gray-100/50">
                             <!-- Items will be populated here -->
+                            <tr class="bg-white/50 hover:bg-gray-50/50 transition-colors [&>td]:py-4 [&>td]:px-6">
+                                <td colspan="6" class="py-6 text-center text-gray-500">Scan items to begin</td>
+                            </tr>
                         </tbody>
                     </table>
                 </div>
 
-                <!-- Summary and Controls Section -->
-                <div class="p-4 bg-gray-50 rounded-b-xl">
-                    <!-- Summary Info -->
-                    <div class="flex items-center justify-between py-3 border-b border-gray-200 max-sm:flex-col max-sm:gap-2 max-sm:items-start">
-                        <div class="text-sm font-medium text-gray-700">
-                            Total Quantity: <span id="addQuantity" class="font-bold">0</span>
+                <!-- Summary and Controls Section - Floating panel -->
+                <div class="p-5 border-t border-gray-100 bg-white/50 rounded-b-2xl backdrop-blur-sm">
+                    <!-- Summary Info - Minimalist badges -->
+                    <div class="flex items-center justify-between py-4 border-b border-gray-100/50 max-sm:flex-col max-sm:gap-3 max-sm:items-start">
+                        <div class="flex items-center text-sm font-medium text-gray-600">
+                            <span class="w-2 h-2 mr-2 bg-blue-400 rounded-full"></span>
+                            <span>Quantity: <span id="addQuantity" class="font-bold text-gray-900">0</span></span>
                         </div>
-                        <div class="text-sm font-medium text-gray-700">
-                            Total Amount: <span id="total-amount" class="font-bold">Rs. 0.00</span>
+                        <div class="flex items-center text-sm font-medium text-gray-600">
+                            <span class="w-2 h-2 mr-2 bg-purple-400 rounded-full"></span>
+                            <span>Amount: <span id="total-amount" class="font-bold text-gray-900">Rs. 0.00</span></span>
                         </div>
-                        <div class="text-sm font-medium text-gray-700">
-                            Grand Total: <span id="grand-total" class="font-bold text-blue-600">Rs. 0.00</span>
+                        <div class="flex items-center text-sm font-medium text-gray-600">
+                            <span class="w-2 h-2 mr-2 bg-green-400 rounded-full"></span>
+                            <span>Total: <span id="grand-total" class="font-bold text-blue-600">Rs. 0.00</span></span>
                         </div>
                     </div>
 
-                    <!-- Controls -->
-                    <div class="flex items-start gap-4 mt-4 max-lg:flex-col">
-                        <!-- Customer Due Info -->
-                        <div id="due-amount" class="p-2 text-xs font-medium text-gray-600 bg-gray-100 rounded-lg max-sm:w-full">
-                            <!-- Customer due amount will appear here -->
-                        </div>
-
-                        <!-- Discount Input -->
-                        <div class="flex-1 max-sm:w-full">
-                            <div class="flex items-center gap-2 max-sm:flex-col max-sm:items-start">
-                                <label for="itemDiscount" class="text-sm font-medium text-gray-700 whitespace-nowrap">
-                                    Discount
-                                </label>
-                                <input type="text" id="itemDiscount"
-                                    class="w-full p-2 text-sm text-gray-700 transition-all bg-white border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-                                    placeholder="0" disabled>
+                    <!-- Controls - Futuristic layout -->
+                    <div class="flex items-start gap-5 mt-5 max-lg:flex-col">
+                        <!-- Customer Due Info - Subtle notification -->
+                        <div id="due-amount" class="p-3 text-xs font-medium text-gray-600 border border-gray-100 shadow-sm bg-white/80 rounded-xl max-sm:w-full backdrop-blur-sm">
+                            <div class="flex items-center">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 mr-2 text-yellow-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                                </svg>
+                                <span>Customer due information will appear here</span>
                             </div>
                         </div>
 
-                        <!-- Action Buttons -->
+                        <!-- Discount Input - Floating label style -->
+                        <div class="flex-1 max-sm:w-full">
+                            <div class="relative">
+                                <input type="text" id="itemDiscount"
+                                    class="w-full p-3 pl-4 text-sm text-gray-700 transition-all border border-gray-200 bg-white/80 rounded-xl focus:ring-2 focus:ring-blue-400/50 focus:border-blue-400/30 peer"
+                                    placeholder=" " disabled>
+                                <label for="itemDiscount" 
+                                    class="absolute text-sm text-gray-500 duration-300 transform -translate-y-4 scale-75 top-3 left-4 origin-[0] peer-focus:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-4">
+                                    Discount
+                                </label>
+                            </div>
+                        </div>
+
+                        <!-- Action Buttons - Futuristic glass buttons -->
                         <div class="grid w-1/2 grid-cols-2 gap-3 max-lg:w-full max-sm:grid-cols-1">
-                            
-                            <!-- Hold All Button -->
-                            <button
-                                id="hold-all-button"
-                                class="flex items-center justify-center gap-2 px-6 py-4 text-sm font-medium text-white transition-all bg-gray-800 rounded-xl hover:bg-gray-700"
-                            >
-                                <!-- Pause Icon -->
+                            <!-- Hold All Button - Glass with icon -->
+                            <button id="hold-all-button"
+                                class="flex items-center justify-center gap-2 px-6 py-3.5 text-sm font-medium text-gray-900 transition-all bg-white/80 border border-gray-200 rounded-xl hover:bg-white shadow-sm backdrop-blur-sm">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
                                         d="M10 9v6m4-6v6m-7 8h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v18a2 2 0 002 2z"/>
                                 </svg>
                                 Hold All
                             </button>
 
-                         <button
-                                type="button"
+                            <!-- Process Payment Button - Accent color with hover effect -->
+                            <button type="button"
                                 data-modal-target="payment-modal"
                                 data-modal-toggle="payment-modal"
                                 onclick="getDataForPaymentModal();"
-                                class="flex items-center justify-center gap-2 px-6 py-4 text-sm font-medium text-white transition-all rounded-xl hover:opacity-90"
-                                style="background-color: {{ $settings[7]->value }}"
-                            >
-                                <!-- Money Icon -->
+                                class="flex items-center justify-center gap-2 px-6 py-3.5 text-sm font-medium text-white transition-all rounded-xl hover:shadow-lg"
+                                style="background-color: {{ $settings[7]->value }}">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
                                         d="M12 8c-1.657 0-3 1.567-3 3.5S10.343 15 12 15s3-1.567 3-3.5S13.657 8 12 8zm0 0V5m0 10v3" />
                                 </svg>
                                 Process Payment
                             </button>
                             
+                            <!-- Cancel Button - Hidden by default -->
                             <button id="cancelButton"
-                                    class="flex items-center justify-center gap-2 px-4 py-2.5 text-sm font-medium text-white bg-red-600 rounded-lg transition-all hover:bg-red-700 col-span-2 max-sm:col-span-1 hidden">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="currentColor" viewBox="0 0 16 16">
-                                    <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16"/>
-                                    <path d="M11.354 4.646a.5.5 0 0 0-.708 0l-6 6a.5.5 0 0 0 .708.708l6-6a.5.5 0 0 0 0-.708"/>
+                                    class="flex items-center justify-center gap-2 px-4 py-2.5 text-sm font-medium text-white bg-red-500/90 rounded-xl transition-all hover:bg-red-600/90 col-span-2 max-sm:col-span-1  shadow-sm">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
                                 </svg>
                                 Cancel
                             </button>
@@ -445,12 +444,11 @@
                         {{ $item->quantity == 0 ? 'disabled' : '' }}
                         style="background-color: {{ $item->quantity == 0 ? '#e0e0e0' : '#ffffff' }}; cursor: {{ $item->quantity == 0 ? 'not-allowed' : 'pointer' }};">
                         <div class="bg-white xl:h-[160px] max-xl:aspect-[4/5] flex flex-col justify-between rounded-md border border-gray-300">
-                            <div class="bg-gradient-to-r from-[{{ $settings[7]->value }}] to-[{{ $settings[7]->value }}90] h-8 rounded-t-lg text-white flex items-center px-2 justify-between text-xs font-medium {{ $item->minimum_qty > $item->quantity ? 'from-red-500 to-red-400' : '' }}">
-                                <p class="truncate">{{ $item->item_code }}</p>
-                                <span class="bg-white/20 px-1.5 py-0.5 rounded-full">{{ $item->quantity }}</span>
-                            </div>
-        
-                            <div class="flex flex-col justify-between p-1 h-5/6">
+                                <div class="bg-gradient-to-r from-[{{ $settings[7]->value }}] to-[{{ $settings[7]->value }}90] h-8 rounded-t-lg text-white flex items-center px-2 justify-between text-xs font-medium {{ $item->minimum_qty > $item->quantity ? 'from-red-500 to-red-400' : '' }}">                                
+                                    <p class="truncate">{{ $item->item_code }}</p>
+                                    <span class="bg-white/20 px-1.5 py-0.5 rounded-full">{{ $item->quantity }}</span>
+                                </div>                            
+                                <div class="flex flex-col justify-between p-1 h-5/6">
                                 <center>
                                     @if (!empty($item->getImageUrlAttribute()))
                                         <img src="{{ $item->getImageUrlAttribute() }}" alt="Product image" style="width: 80px; height: 80px; border-radius:5px;">
@@ -459,7 +457,7 @@
                                     @endif
                                 </center>
                                 <span class="flex flex-col text-xs text-center h-fit" id="stored-items">
-                                    <p class="text-lg font-medium text-gray-900 truncate">{{ $item->item_name }}</p>
+                                  <p class="text-lg font-medium text-gray-900 truncate">{{ $item->item_name }}</p>
                                     <p class="hidden truncate">{{ $item->item_name }}</p>
 
                                       <div class="flex items-center justify-between">
@@ -467,7 +465,6 @@
                                             <span class="text-xs text-gray-500 truncate">Qty: {{ $item->quantity }}</span>
                                         </div>
                                 </span>
-                                
                             </div>
                         </div>
                         <!-- Custom Tooltip -->
