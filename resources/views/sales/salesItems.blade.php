@@ -124,67 +124,61 @@
         <!--Summary pane + submission controls-->
         <div>
             <!--rounded panel-->
-            <div class="px-12 max-sm:px-6">
-                <div
-                    class="rounded-2xl border-black border-2 h-[300px] max-lg:h-fit flex items-center gap-3 max-lg:flex-col">
-                    <div class="flex flex-col items-center justify-center w-1/4 h-full gap-4 max-lg:w-full">
-                        <div class="flex w-full max-lg:w-fit max-lg:items-center">
-                            <img src="{{ asset('images/sales/invoice.png') }}" alt="card-img"
-                                class="object-contain w-1/2">
-                            <span class="flex flex-col items-end w-1/2 h-full justify-evenly">
-                                <p class="pr-2 text-end">Total Invoice</p>
-                                <h3 class="pr-2 text-2xl font-bold text-center" id="total-invoice">200</h3>
-                            </span>
+            <div class="px-4 sm:px-6 lg:px-8">
+                <div class="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-4">
+                    <!-- Total Invoice Card -->
+                    <div class="p-6 bg-white border-l-4 border-blue-500 shadow-md rounded-xl">
+                        <div class="flex items-center space-x-4">
+                            <div class="p-3 bg-blue-100 rounded-lg">
+                                <img src="{{ asset('images/sales/invoice.png') }}" alt="Invoice" class="w-8 h-8">
+                            </div>
+                            <div>
+                                <p class="text-sm text-gray-500">Total Invoice</p>
+                                <h3 class="text-2xl font-bold text-gray-800" id="total-invoice">200</h3>
+                            </div>
                         </div>
-                        <span class="w-full px-3 max-lg:w-5/6 max-lg:p-0">
-                            <button class="w-full h-10 text-white bg-gray-800 rounded-md">More Info</button>
-                        </span>
                     </div>
-                    <div class="w-[1px] h-5/6 border-[1px] border-black max-lg:w-5/6"></div>
-                    <div class="flex flex-col items-center justify-center w-1/4 h-full gap-4 max-lg:w-full">
-                        <div class="flex w-full max-lg:w-fit max-lg:items-center">
-                            <img src="{{ asset('images/sales/supplier.png') }}" alt="card-img"
-                                class="object-contain w-1/2">
-                            <span class="flex flex-col items-end w-1/2 h-full justify-evenly">
-                                <p class="pr-2 text-end">Total Invoice Amount</p>
-                                <h3 class="pr-2 text-2xl font-bold text-center" id="total-invoice-amount">
-                                    Rs.1,47,210.00</h3>
-                            </span>
+
+                    <!-- Total Invoice Amount Card -->
+                    <div class="p-6 bg-white border-l-4 border-green-500 shadow-md rounded-xl">
+                        <div class="flex items-center space-x-4">
+                            <div class="p-3 bg-green-100 rounded-lg">
+                                <img src="{{ asset('images/sales/supplier.png') }}" alt="Amount" class="w-8 h-8">
+                            </div>
+                            <div>
+                                <p class="text-sm text-gray-500">Total Invoice Amount</p>
+                                <h3 class="text-2xl font-bold text-gray-800" id="total-invoice-amount">Rs.1,47,210.00</h3>
+                            </div>
                         </div>
-                        <span class="w-full px-3 max-lg:w-5/6 max-lg:p-0">
-                            <button class="w-full h-10 text-white bg-gray-800 rounded-md">More Info</button>
-                        </span>
                     </div>
-                    <div class="w-[1px] h-5/6 border-[1px] border-black max-lg:w-5/6"></div>
-                    <div class="flex flex-col items-center justify-center w-1/4 h-full gap-4 max-lg:w-full">
-                        <div class="flex w-full max-lg:w-fit max-lg:items-center">
-                            <img src="{{ asset('images/sales/purchases.png') }}" alt="card-img"
-                                class="object-contain w-1/2">
-                            <span class="flex flex-col items-end w-1/2 h-full justify-evenly">
-                                <p class="pr-2 text-end">Total Received Amount</p>
-                                <h3 class="pr-2 text-2xl font-bold text-center" id="total-received-amount">
-                                    Rs.1,47,210.00</h3>
-                            </span>
-                        </div> <span class="w-full px-3 max-lg:w-5/6 max-lg:p-0">
-                            <button class="w-full h-10 text-white bg-gray-800 rounded-md">More Info</button>
-                        </span>
-                    </div>
-                    <div class="w-[1px] h-5/6 border-[1px] border-black max-lg:w-5/6"></div>
-                    <div class="flex flex-col items-center justify-center w-1/4 h-full gap-4 max-lg:w-full">
-                        <div class="flex w-full max-lg:w-fit max-lg:items-center">
-                            <img src="{{ asset('images/sales/invoice1.png') }}" alt="card-img"
-                                class="object-contain w-1/2">
-                            <span class="flex flex-col items-end w-1/2 h-full justify-evenly">
-                                <p class="pr-2 text-end">Total Sales Due</p>
-                                <h3 class="pr-2 text-2xl font-bold text-center" id="total-sales-due">Rs.0.00</h3>
-                            </span>
+
+                    <!-- Total Received Amount Card -->
+                    <div class="p-6 bg-white border-l-4 border-purple-500 shadow-md rounded-xl">
+                        <div class="flex items-center space-x-4">
+                            <div class="p-3 bg-purple-100 rounded-lg">
+                                <img src="{{ asset('images/sales/purchases.png') }}" alt="Received" class="w-8 h-8">
+                            </div>
+                            <div>
+                                <p class="text-sm text-gray-500">Total Received Amount</p>
+                                <h3 class="text-2xl font-bold text-gray-800" id="total-received-amount">Rs.1,47,210.00</h3>
+                            </div>
                         </div>
-                        <span class="w-full px-3 max-lg:w-5/6 max-lg:p-0">
-                            <button class="w-full h-10 mb-3 text-white bg-gray-800 rounded-md">More Info</button>
-                        </span>
+                    </div>
+
+                    <!-- Total Sales Due Card -->
+                    <div class="p-6 bg-white border-l-4 shadow-md rounded-xl border-amber-500">
+                        <div class="flex items-center space-x-4">
+                            <div class="p-3 rounded-lg bg-amber-100">
+                                <img src="{{ asset('images/sales/invoice1.png') }}" alt="Due" class="w-8 h-8">
+                            </div>
+                            <div>
+                                <p class="text-sm text-gray-500">Total Sales Due</p>
+                                <h3 class="text-2xl font-bold text-gray-800" id="total-sales-due">Rs.0.00</h3>
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </div>
+            </div><br/>
         </div>
         <!--btn controls-->
         {{-- <div class="flex items-center justify-between w-full gap-3 px-12 py-5 max-sm:px-6 max-md:flex-col">
@@ -319,21 +313,21 @@
             <!--table from flowbite-->
             <div class="relative h-[500px] overflow-x-auto">
             <table id="salesListTable" class="w-full text-sm text-left text-gray-500 rtl:text-right">
-    <thead class="text-xs text-white uppercase bg-[{{ $settings[7]->value}}]">
-        <tr>
-            <th scope="col" class="px-6 py-3 rounded-tl-lg">ID</th>
-            <th scope="col" class="px-6 py-3">Code</th>
-            <th scope="col" class="px-6 py-3">Customer Name</th>
-            <th scope="col" class="px-6 py-3">User Name</th>
-            <th scope="col" class="px-6 py-3">Total (RS)</th>
-            <th scope="col" class="px-6 py-3">Recieved Amount (RS)</th>
-            <th scope="col" class="px-6 py-3">Status</th>
-            <th scope="col" class="px-6 py-3">Due Amount (RS)</th>
-            <th scope="col" class="px-6 py-3">Discount (RS)</th>
-            <th scope="col" class="px-6 py-3">Created At</th>
-            <th scope="col" class="px-6 py-3 rounded-tr-lg">Action</th>
-        </tr>
-    </thead>
+<thead class="text-xs text-white uppercase bg-[{{ $settings[7]->value }}]">
+    <tr>
+        <th scope="col" class="px-4 py-2.5 text-[0.75rem] font-medium rounded-tl-lg">ID</th>
+        <th scope="col" class="px-4 py-2.5 text-[0.75rem] font-medium">Code</th>
+        <th scope="col" class="px-4 py-2.5 text-[0.75rem] font-medium">Customer</th>
+        <th scope="col" class="px-4 py-2.5 text-[0.75rem] font-medium">User</th>
+        <th scope="col" class="px-4 py-2.5 text-[0.75rem] font-medium">Total (Rs)</th>
+        <th scope="col" class="px-4 py-2.5 text-[0.75rem] font-medium">Received (Rs)</th>
+        <th scope="col" class="px-4 py-2.5 text-[0.75rem] font-medium">Status</th>
+        <th scope="col" class="px-4 py-2.5 text-[0.75rem] font-medium">Due (Rs)</th>
+        <th scope="col" class="px-4 py-2.5 text-[0.75rem] font-medium">Discount (Rs)</th>
+        <th scope="col" class="px-4 py-2.5 text-[0.75rem] font-medium">Created</th>
+        <th scope="col" class="px-4 py-2.5 text-[0.75rem] font-medium rounded-tr-lg">Action</th>
+    </tr>
+</thead>
     <tbody id="salesListBody">
         @foreach ($salesData as $data)
         <tr class="text-black bg-white border-2">
@@ -344,16 +338,24 @@
             <td class="px-6 py-4 grand-total" data-grand-total="{{ $data->grand_total }}">{{ $data->grand_total }}</td>
             <td class="px-6 py-4 paid-amount" data-paid-amount="{{ $data->paid_amount }}">{{ $data->paid_amount }}</td>
             <td class="px-6 py-4">
-                <span class="p-3 border-2 rounded-lg bg-[#029ED936]">{{ $data->payment_status }}</span>
+                <span class="inline-flex items-center px-3 py-1 text-sm font-medium text-blue-800 bg-blue-100 rounded-full">{{ $data->payment_status }}</span>
             </td>
             <td class="px-6 py-4 to-pay" data-to-pay="{{ $data->grand_total - $data->paid_amount  }}">{{ $data->grand_total - $data->paid_amount  }}</td>
             <td class="px-6 py-4 discount">{{ $data->discount }}</td>
             <td class="px-6 py-4">{{ $data->created_at }}</td>
-            <td class="flex items-center px-6 py-4 space-x-2">
-                @if ($data->grand_total - $data->paid_amount >0)
-                    <button class="p-3 border-2 rounded-lg bg-[#47891E] text-white" onclick="payPayment({{ $data->id }})">Pay</button>
-                @endif
-                <button class="p-3 border-2 rounded-lg bg-[{{ $settings[7]->value}}] text-white" onclick="paymentDetails({{ $data->id }})">MORE</button>
+            <td class="px-6 py-4">
+                <div class="flex items-center space-x-3">
+                    @if ($data->grand_total - $data->paid_amount > 0)
+                    <button onclick="payPayment({{ $data->id }})" 
+                            class="px-3.5 py-1.5 border border-green-600 text-green-600 hover:bg-green-50 text-sm font-medium rounded-md transition-colors focus:outline-none focus:ring-1 focus:ring-green-500">
+                        Pay
+                    </button>
+                    @endif
+                    <button onclick="paymentDetails({{ $data->id }})" 
+                            class="px-3.5 py-1.5 border border-gray-300 text-gray-700 hover:bg-gray-50 text-sm font-medium rounded-md transition-colors focus:outline-none focus:ring-1 focus:ring-gray-500">
+                        More
+                    </button>
+                </div>
             </td>
         </tr>
         @endforeach
