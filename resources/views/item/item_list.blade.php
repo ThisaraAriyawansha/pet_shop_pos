@@ -109,7 +109,11 @@
                         <tr>
                             <th scope="col" class="px-6 py-3 text-xs font-medium tracking-wider text-left text-white uppercase rounded-tl-lg">#</th>
                             <th scope="col" class="px-6 py-3 text-xs font-medium tracking-wider text-left text-white uppercase">Image</th>
+                             <th scope="col" class="px-6 py-3 text-xs font-medium tracking-wider text-left text-white uppercase">Item Code</th>
                             <th scope="col" class="px-6 py-3 text-xs font-medium tracking-wider text-left text-white uppercase">Item Name</th>
+                            <th scope="col" class="px-6 py-3 text-xs font-medium tracking-wider text-left text-white uppercase">Purchase Price</th>
+                            <th scope="col" class="px-6 py-3 text-xs font-medium tracking-wider text-left text-white uppercase">Retail Price</th>
+                            <th scope="col" class="px-6 py-3 text-xs font-medium tracking-wider text-left text-white uppercase">Wholesale Price</th>
                             <th scope="col" class="px-6 py-3 text-xs font-medium tracking-wider text-left text-white uppercase">Qty</th>
                             <th scope="col" class="px-6 py-3 text-xs font-medium tracking-wider text-left text-white uppercase">Status</th>
                             <th scope="col" class="px-6 py-3 text-xs font-medium tracking-wider text-left text-white uppercase rounded-tr-lg">Actions</th>
@@ -118,7 +122,7 @@
                     <tbody class="bg-white divide-y divide-gray-200">
                         @forelse($items as $value)
                         <tr class="transition-all hover:bg-gray-50">
-                            <td class="px-6 py-4 text-sm font-medium text-gray-900 whitespace-nowrap">{{ $value->id }}</td>
+                            <td class="px-6 py-4 text-sm font-medium text-gray-900 whitespace-nowrap">{{ $loop->iteration }}</td>
                             <td class="px-6 py-4">
                                 @if(!empty($value->getImageUrlAttribute()))
                                 <img src="{{ $value->getImageUrlAttribute() }}" class="object-cover w-10 h-10 rounded-full">
@@ -130,7 +134,12 @@
                                 </div>
                                 @endif
                             </td>
+                         <td class="px-6 py-4 text-sm text-gray-900 item-name">{{ $value->item_code }}</td>
                             <td class="px-6 py-4 text-sm text-gray-900 item-name">{{ $value->item_name }}</td>
+                             <td class="px-6 py-4 text-sm text-gray-900 item-name">{{ $value->purchase_price }}</td>
+                            <td class="px-6 py-4 text-sm text-gray-900 item-name">{{ $value->retail_price }}</td>
+                            <td class="px-6 py-4 text-sm text-gray-900 item-name">{{ $value->wholesale_price }}</td>
+
                             <td class="px-6 py-4 text-sm text-gray-900 whitespace-nowrap">{{ $value->quantity }}</td>
                             <td class="px-6 py-4 text-sm text-gray-900 whitespace-nowrap">
                                 <span class="px-3 py-1 text-xs font-medium rounded-full {{ $value->status_id == 1 ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800' }}">
@@ -152,7 +161,7 @@
                                         {{ $value->status_id == 1 ? 'Mark Out of Stock' : 'Mark In Stock' }}
                                     </button>
                                     @if(has_permission(55))
-                                    <a href="{{ url('item/delete/'.$value->id) }}" class="px-3 py-1 text-sm text-white bg-red-600 rounded-md hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2">
+                                    <a href="{{ url('item/delete/'.$value->id) }}" class="hidden px-3 py-1 text-sm text-white bg-red-600 rounded-md hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2">
                                         Delete
                                     </a>
                                     @endif
