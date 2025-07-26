@@ -63,7 +63,7 @@
             </form>
         </div>
         <button type="button" class="py-2 md:py-3 px-4 md:px-6 bg-[#000000] text-white rounded-lg text-sm md:text-base"
-        onclick="window.location.href='/item/item_list'">Reset</button>
+        onclick="window.location.href='/item/genarateCode'">Reset</button>
             <span class="flex items-center gap-3 w-fit max-md:w-full">
                 <input type="number" id="col_num"
                     class="block w-full p-2 text-xs text-gray-900 border border-gray-300 rounded-lg md:p-3 md:text-sm bg-gray-50 focus:ring-blue-500 focus:border-blue-500"
