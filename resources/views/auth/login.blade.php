@@ -11,9 +11,11 @@
     <style>
         body {
             font-family: 'Inter', sans-serif;
+            margin: 0;
+            overflow: hidden;
         }
         .gradient-bg {
-            background: linear-gradient(135deg, {{ $settings[2]->value }} 0%, {{ $settings[2]->value }}80 100%);
+            background: white;
         }
         .btn-primary {
             background-color: {{ $settings[4]->value }};
@@ -21,12 +23,16 @@
             transition: all 0.3s ease;
         }
         .btn-primary:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            transform: scale(1.05);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+        .input-field {
+            transition: all 0.3s ease;
         }
         .input-field:focus {
             border-color: {{ $settings[4]->value }};
-            box-shadow: 0 0 0 2px {{ $settings[4]->value }}20;
+            box-shadow: 0 0 0 3px {{ $settings[4]->value }}20;
+            transform: scale(1.02);
         }
         @media (max-width: 640px) {
             .mobile-stack {
@@ -42,94 +48,209 @@
                 margin-top: 1rem;
             }
         }
+        /* Loading Animation Styles */
+        .loading-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            transition: opacity 0.5s ease;
+        }
+        .loading-container.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+        .loading-dots {
+            display: flex;
+            gap: 12px;
+        }
+        .dot {
+            width: 12px;
+            height: 12px;
+            background-color: {{ $settings[2]->value }};
+            border-radius: 50%;
+            animation: pulse 1.2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+            transform-origin: center;
+        }
+        .dot:nth-child(2) { animation-delay: 0.2s; }
+        .dot:nth-child(3) { animation-delay: 0.4s; }
+        .dot:nth-child(4) { animation-delay: 0.6s; }
+        .dot:nth-child(5) { animation-delay: 0.8s; }
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 0.5; }
+            50% { transform: scale(1.6); opacity: 1; }
+        }
+        /* Empty Background and Powered By Styles */
+        .empty-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 999;
+            transition: opacity 0.8s ease;
+        }
+        .empty-background.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+        .powered-by {
+            font-size: 1.25rem;
+            color: {{ $settings[2]->value }};
+            text-align: center;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.5s ease, transform 0.5s ease;
+        }
+        .powered-by.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        /* Content Animation */
+        #main-content {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+        #main-content.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        /* Form Element Animations */
+        .form-field {
+            opacity: 0;
+            transform: translateX(-20px);
+            transition: opacity 0.5s ease, transform 0.5s ease;
+        }
+        .form-field.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+        .form-field:nth-child(1) { transition-delay: 0.1s; }
+        .form-field:nth-child(2) { transition-delay: 0.2s; }
+        .form-field:nth-child(3) { transition-delay: 0.3s; }
+        .form-field:nth-child(4) { transition-delay: 0.4s; }
     </style>
 </head>
 
-<body class="flex items-center justify-center min-h-screen p-4 gradient-bg">
-    <div class="flex flex-col w-full max-w-4xl overflow-hidden bg-white shadow-xl rounded-2xl mobile-stack lg:flex-row">
-        <!-- Left Side - Branding (Hidden on mobile) -->
-        <div class="lg:w-1/2 bg-gradient-to-br from-[{{ $settings[2]->value }}] to-[{{ $settings[4]->value }}] p-8 flex flex-col justify-center items-center text-white hidden sm:flex">
-            <div class="w-full max-w-xs mb-8">
-                <img src="{{ asset($settings[1]->value) }}" alt="Company Logo" class="w-full h-auto">
-            </div>
-            <h2 class="mb-2 text-2xl font-bold mobile-text-center">Welcome Back!</h2>
-            <p class="text-center opacity-90">Sign in to access your account and continue your journey with us.</p>
+<body class="gradient-bg">
+    <!-- Loading Animation -->
+    <div id="loading" class="loading-container">
+        <div class="loading-dots">
+            <div class="dot"></div>
+            <div class="dot"></div>
+            <div class="dot"></div>
+            <div class="dot"></div>
+            <div class="dot"></div>
         </div>
-        
-        <!-- Mobile Header (Shown only on mobile) -->
-        <div class="sm:hidden p-6 bg-gradient-to-r from-[{{ $settings[2]->value }}] to-[{{ $settings[4]->value }}] text-white">
-            <div class="w-16 h-16 mx-auto mb-4">
-                <img src="{{ asset($settings[1]->value) }}" alt="Company Logo" class="object-contain w-full h-full">
-            </div>
-            <h2 class="text-xl font-bold text-center">Welcome Back!</h2>
+    </div>
+
+    <!-- Empty Background with Powered By -->
+    <div id="empty-background" class="empty-background">
+        <div id="powered-by" class="powered-by">
+            Powered by plexCode.com
         </div>
-        
-        <!-- Right Side - Login Form -->
-        <div class="p-6 sm:p-8 lg:w-1/2 mobile-padding">
-            <h1 class="mb-2 text-2xl font-bold text-gray-800 sm:text-3xl mobile-text-center sm:text-left">Sign In</h1>
-            <p class="mb-6 text-gray-600 sm:mb-8 mobile-text-center sm:text-left">Enter your credentials to access your account</p>
+    </div>
+
+    <!-- Original Login Interface -->
+    <div id="main-content" class="flex items-center justify-center min-h-screen p-4 gradient-bg">
+        <div class="flex flex-col w-full max-w-4xl overflow-hidden bg-white shadow-xl rounded-2xl mobile-stack lg:flex-row">
+            <!-- Left Side - Branding (Hidden on mobile) -->
+            <div class="lg:w-1/2 bg-gradient-to-br from-[{{ $settings[2]->value }}] to-[{{ $settings[4]->value }}] p-8 flex flex-col justify-center items-center text-white hidden sm:flex">
+                <div class="w-full max-w-xs mb-8">
+                    <img src="{{ asset($settings[1]->value) }}" alt="Company Logo" class="w-full h-auto">
+                </div>
+                <h2 class="mb-2 text-2xl font-bold mobile-text-center">Welcome Back!</h2>
+                <p class="text-center opacity-90">Sign in to access your account and continue your journey with us.</p>
+            </div>
             
-            <form method="POST" action="{{ route('login') }}" class="space-y-4 sm:space-y-6">
-                @csrf
+            <!-- Mobile Header (Shown only on mobile) -->
+            <div class="sm:hidden p-6 bg-gradient-to-r from-[{{ $settings[2]->value }}] to-[{{ $settings[4]->value }}] text-white">
+                <div class="w-16 h-16 mx-auto mb-4">
+                    <img src="{{ asset($settings[1]->value) }}" alt="Company Logo" class="object-contain w-full h-full">
+                </div>
+                <h2 class="text-xl font-bold text-center">Welcome Back!</h2>
+            </div>
+            
+            <!-- Right Side - Login Form -->
+            <div class="p-6 sm:p-8 lg:w-1/2 mobile-padding">
+                <h1 class="mb-2 text-2xl font-bold text-gray-800 sm:text-3xl mobile-text-center sm:text-left">Sign In</h1>
+                <p class="mb-6 text-gray-600 sm:mb-8 mobile-text-center sm:text-left">Enter your credentials to access your account</p>
                 
-                <!-- Email Field -->
-                <div>
-                    <label for="email" class="block mb-1 text-sm font-medium text-gray-700">Email Address</label>
-                    <div class="relative">
-                        <input type="email" name="email" id="email" placeholder="your@email.com" 
-                               class="w-full px-4 py-2 text-sm border border-gray-300 rounded-lg sm:py-3 sm:text-base input-field focus:outline-none focus:ring-1" 
-                               required autocomplete="email">
-                        <div class="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
-                            <svg class="w-5 h-5 text-gray-400" fill="currentColor" viewBox="0 0 20 20">
-                                <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"></path>
-                                <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"></path>
-                            </svg>
+                <form method="POST" action="{{ route('login') }}" class="space-y-4 sm:space-y-6">
+                    @csrf
+                    
+                    <!-- Email Field -->
+                    <div class="form-field">
+                        <label for="email" class="block mb-1 text-sm font-medium text-gray-700">Email Address</label>
+                        <div class="relative">
+                            <input type="email" name="email" id="email" placeholder="your@email.com" 
+                                   class="w-full px-4 py-2 text-sm border border-gray-300 rounded-lg sm:py-3 sm:text-base input-field focus:outline-none focus:ring-1" 
+                                   required autocomplete="email">
+                            <div class="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
+                                <svg class="w-5 h-5 text-gray-400" fill="currentColor" viewBox="0 0 20 20">
+                                    <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"></path>
+                                    <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"></path>
+                                </svg>
+                            </div>
                         </div>
                     </div>
-                </div>
-                
-                <!-- Password Field -->
-                <div>
-                    <div class="flex items-center justify-between mb-1">
-                        <label for="password" class="block text-sm font-medium text-gray-700">Password</label>
+                    
+                    <!-- Password Field -->
+                    <div class="form-field">
+                        <div class="flex items-center justify-between mb-1">
+                            <label for="password" class="block text-sm font-medium text-gray-700">Password</label>
+                        </div>
+                        <div class="relative">
+                            <input type="password" name="password" id="password" placeholder="••••••••" 
+                                   class="w-full px-4 py-2 pr-10 text-sm border border-gray-300 rounded-lg sm:py-3 sm:text-base input-field focus:outline-none focus:ring-1" 
+                                   required autocomplete="current-password">
+                            <button type="button" id="togglePassword" class="absolute text-gray-400 transform -translate-y-1/2 right-3 top-1/2 hover:text-gray-600">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 16 16">
+                                    <path d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8zM1.173 8a13.133 13.133 0 0 1 1.66-2.043C4.12 4.668 5.88 3.5 8 3.5c2.12 0 3.879 1.168 5.168 2.457A13.133 13.133 0 0 1 14.828 8c-.058.087-.122.183-.195.288-.335.48-.83 1.12-1.465 1.755C11.879 11.332 10.119 12.5 8 12.5c-2.12 0-3.879-1.168-5.168-2.457A13.134 13.134 0 0 1 1.172 8z"/>
+                                    <path d="M8 5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5zM4.5 8a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0z"/>
+                                </svg>
+                            </button>
+                        </div>
                     </div>
-                    <div class="relative">
-                        <input type="password" name="password" id="password" placeholder="••••••••" 
-                               class="w-full px-4 py-2 pr-10 text-sm border border-gray-300 rounded-lg sm:py-3 sm:text-base input-field focus:outline-none focus:ring-1" 
-                               required autocomplete="current-password">
-                        <button type="button" id="togglePassword" class="absolute text-gray-400 transform -translate-y-1/2 right-3 top-1/2 hover:text-gray-600">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 16 16">
-                                <path d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8zM1.173 8a13.133 13.133 0 0 1 1.66-2.043C4.12 4.668 5.88 3.5 8 3.5c2.12 0 3.879 1.168 5.168 2.457A13.133 13.133 0 0 1 14.828 8c-.058.087-.122.183-.195.288-.335.48-.83 1.12-1.465 1.755C11.879 11.332 10.119 12.5 8 12.5c-2.12 0-3.879-1.168-5.168-2.457A13.134 13.134 0 0 1 1.172 8z"/>
-                                <path d="M8 5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5zM4.5 8a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0z"/>
-                            </svg>
-                        </button>
-                    </div>
-                </div>
-                
-                <!-- Remember Me -->
-                    <div class="w-full mt-4 text-center text-gray-600 max-sm:text-sm">
+                    
+                    <!-- Remember Me -->
+                    <div class="w-full mt-4 text-center text-gray-600 form-field max-sm:text-sm">
                         <p>Welcome back! Please enter your credentials to access the system.</p>
                     </div>
+                    
+                    <!-- Submit Button -->
+                    <div class="form-field">
+                        <button type="submit" 
+                                class="w-full px-4 py-2 text-base font-medium rounded-lg shadow-sm sm:py-3 sm:text-lg btn-primary mobile-mt-4">
+                            Sign In
+                        </button>
+                    </div>
+                    
+                    <!-- Sign Up Link -->
+                </form>
                 
-                <!-- Submit Button -->
-                <button type="submit" 
-                        class="w-full px-4 py-2 text-base font-medium rounded-lg shadow-sm sm:py-3 sm:text-lg btn-primary mobile-mt-4">
-                    Sign In
-                </button>
-                
-                <!-- Sign Up Link -->
-
-            </form>
-            
-            <!-- Footer -->
-            <div class="mt-8 text-xs text-center text-gray-500">
-                <p>© {{ date('Y') }} {{ $settings[6]->value }}. All rights reserved.</p>
-                <p class="mt-1">Powered by Plexcode</p>
+                <!-- Footer -->
+                <div class="mt-8 text-xs text-center text-gray-500">
+                    <p>© {{ date('Y') }} {{ $settings[6]->value }}. All rights reserved.</p>
+                    <p class="mt-1">Powered by Plexcode</p>
+                </div>
             </div>
         </div>
     </div>
 
     <script>
+        // Password toggle functionality
         document.getElementById('togglePassword').addEventListener('click', function() {
             const passwordField = document.getElementById('password');
             const icon = this.querySelector('svg');
@@ -148,6 +269,36 @@
                     <path d="M8 5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5zM4.5 8a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0z"/>
                 `;
             }
+        });
+
+        // Loading and transition logic
+        window.addEventListener('load', function() {
+            const loading = document.getElementById('loading');
+            const emptyBackground = document.getElementById('empty-background');
+            const poweredBy = document.getElementById('powered-by');
+            const mainContent = document.getElementById('main-content');
+            const formFields = document.querySelectorAll('.form-field');
+
+            // Step 1: Show loading dots for 2 seconds
+            setTimeout(() => {
+                loading.classList.add('hidden');
+                // Step 2: Show empty background
+                setTimeout(() => {
+                    poweredBy.classList.add('visible');
+                    // Step 3: Show "Powered by plexcode.com" for 1.5 seconds
+                    setTimeout(() => {
+                        emptyBackground.classList.add('hidden');
+                        mainContent.classList.add('visible');
+                        document.body.style.overflow = 'auto';
+                        // Animate form fields sequentially
+                        formFields.forEach(field => {
+                            setTimeout(() => {
+                                field.classList.add('visible');
+                            }, 100);
+                        });
+                    }, 3000);
+                }, 500);
+            }, 4000);
         });
     </script>
 </body>
