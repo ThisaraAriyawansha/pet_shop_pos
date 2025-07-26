@@ -134,7 +134,7 @@
                                     </button>
                                     @endif
                                     @if(has_permission(48))
-                                    <button onclick="deleteSupplier({{ $supplier->id }})" class="px-3 py-1 text-sm text-white bg-red-600 rounded-md hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2">
+                                    <button onclick="deleteSupplier({{ $supplier->id }})" class="hidden px-3 py-1 text-sm text-white bg-red-600 rounded-md hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2">
                                         Delete
                                     </button>
                                     @endif
