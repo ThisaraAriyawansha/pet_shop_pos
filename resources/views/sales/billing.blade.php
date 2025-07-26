@@ -1790,13 +1790,14 @@ const PAGE_CONFIG = {
         currentY += 5; // Reduced gap before the new detail
         doc.setFont('helvetica', 'normal'); // Revert to normal font after highlighting
         // Add the detailed description line by line
-        centerText('Wholesale & Retail Dealers in Electronic Spare ', currentY);
-        currentY += PAGE_CONFIG.spacing.lineHeight; // Move to the next line
-        centerText('Parts of Washing Machines, Rice Cookers, T.V,', currentY);
-        currentY += PAGE_CONFIG.spacing.lineHeight; // Move to the next line
-        centerText('Blenders, Fan Motors & Other', currentY);
-        currentY += PAGE_CONFIG.spacing.lineHeight; // Move to the next line
-        centerText('Electronic Items.', currentY);
+        centerText('Wholesale & Retail Dealers in Aquarium Supplies', currentY);
+        currentY += PAGE_CONFIG.spacing.lineHeight;
+        centerText('Tropical Fish, Tanks, Filters & Air Pumps,', currentY);
+        currentY += PAGE_CONFIG.spacing.lineHeight;
+        centerText('Fish Food, Aquatic Plants & Accessories', currentY);
+        currentY += PAGE_CONFIG.spacing.lineHeight;
+        centerText('Everything Your Pet Needs!', currentY);
+
 
         doc.setFontSize(8);
         currentY += PAGE_CONFIG.spacing.lineHeight;
@@ -1906,7 +1907,7 @@ doc.setFont('helvetica', 'normal');
 doc.setFontSize(9);
 
     // Summary
-    centerText('============================================', currentY);
+    centerText('=======================================', currentY);
     currentY += PAGE_CONFIG.spacing.lineHeight; // Use a smaller spacing value
 
     const summaryItems = [
@@ -1942,19 +1943,20 @@ doc.setFontSize(9);
     doc.setFontSize(7);
     centerText('======== THANK YOU! VISIT AGAIN ========', currentY);
     currentY += PAGE_CONFIG.spacing.lineHeight;
-    centerText('# Exchange within 07 days if item is in good condition.', currentY);
+    centerText('# Fish and Aquatic Products can be exchanged within 07 days', currentY);
 
     currentY += PAGE_CONFIG.spacing.lineHeight;
-    centerText('# Bill must be produced for claims.', currentY);
+    centerText('# Original receipt must be shown for any exchanges.', currentY);
     currentY += PAGE_CONFIG.spacing.lineHeight;
-    centerText('# Transportation Damages, Chip burns, Physical damages', currentY);
+    centerText('# Water quality issues, transportation stress, or physical damage', currentY);
     currentY += PAGE_CONFIG.spacing.lineHeight;
-    centerText('and electronical fixing faults are not covered.', currentY);
+    centerText('after purchase are not covered under warranty.', currentY);
     currentY += PAGE_CONFIG.spacing.lineHeight;
-    centerText('-------------------------------------------------------------------------------------', currentY);
+    centerText('------------------------------------------------------------', currentY);
     const currentYear = new Date().getFullYear();
     currentY += PAGE_CONFIG.spacing.lineHeight;
     centerText(`Powered by PlexCode.`, currentY);
+
 
     // Generate and open PDF
     const pdfBlob = doc.output('blob');
