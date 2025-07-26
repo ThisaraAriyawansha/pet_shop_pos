@@ -217,6 +217,18 @@
                 </a>
             @endif
 
+            @if (has_permission(25))
+                <a href="{{ asset('expenses/expenses') }}" class="group">
+                    <div class="flex flex-col items-center h-full p-6 glass-card rounded-xl" style="background: {{ $settings[7]->value }}; color: #e0e0e0;">
+                        <div class="flex items-center justify-center w-20 h-20 mb-4 rounded-full bg-gradient-to-br from-red-500 to-red-700 icon-hover">
+                            <img src="../images/main-panel/btn-icons/expenses.svg" class="w-12 h-12" alt="Items">
+                        </div>
+                        <h3 class="text-lg font-semibold text-center transition-colors group-hover:text-red-300">Expences</h3>
+                        <p class="mt-1 text-xs text-center text-gray-400">Expences Management</p>
+                    </div>
+                </a>
+            @endif
+
             @if (has_permission(20))
                 <a href="{{ asset('stock/stock') }}" class="group">
                     <div class="flex flex-col items-center h-full p-6 glass-card rounded-xl" style="background: {{ $settings[7]->value }}; color: #e0e0e0;">
