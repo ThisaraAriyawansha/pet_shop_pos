@@ -215,7 +215,7 @@ function exportTableToCSV(filename) {
     rows.forEach((row, rowIndex) => {
         const cols = Array.from(row.querySelectorAll("th, td"));
         const rowContent = cols
-            .filter((col, colIndex) => colIndex !== 1) // Exclude image column
+            .filter((col, colIndex) => ![1,9].includes(colIndex)) 
             .map(col => col.textContent.trim())
             .join(",");
 
