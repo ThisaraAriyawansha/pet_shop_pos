@@ -21,8 +21,8 @@ INSERT INTO `brands` (`id`, `name`, `created_at`, `updated_at`) VALUES
 --
 
 CREATE TABLE `cities` (
-  `id` bigserial  NOT NULL,
-  `district_id` bigserial  DEFAULT NULL,
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `district_id` bigint(20) UNSIGNED DEFAULT NULL,
   `name_en` varchar(45) NOT NULL,
   `name_si` varchar(45) NOT NULL,
   `name_ta` varchar(45) NOT NULL,
@@ -50,7 +50,7 @@ INSERT INTO `cities` (`id`, `district_id`, `name_en`, `name_si`, `name_ta`, `sub
 --
 
 CREATE TABLE `customers` (
-  `id` bigserial  NOT NULL,
+  `id` bigint(20) UNSIGNED NOT NULL,
   `customer_name` varchar(255) NOT NULL,
   `contact_number` varchar(45) NOT NULL,
   `cities_id` bigint(20) UNSIGNED DEFAULT NULL,
